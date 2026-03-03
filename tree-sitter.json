@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "aoe2_rms",
+      "camelcase": "Aoe2Rms",
+      "title": "Aoe2 Random Map Script",
+      "scope": "source.aoe2_rms",
+      "file-types": [
+        "rms"
+      ],
+      "injection-regex": "^aoe2_rms$",
+      "class-name": "TreeSitterAoe2Rms"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "GPL-3.0-or-later",
+    "description": "Tree-sitter grammar for Age of Empires II random map scripts (.rms).",
+    "authors": [
+      {
+        "name": "T-West",
+        "email": "twestura@gmail.com",
+        "url": "https://www.twestaoe.net"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-aoe2_rms",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}
