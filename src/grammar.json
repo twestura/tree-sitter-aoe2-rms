@@ -59,12 +59,20 @@
     "integer": {
       "type": "PATTERN",
       "value": "[0-9]+"
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "\\/\\*[^*]*\\*+([^/*][^*]*\\*+)*\\/"
     }
   },
   "extras": [
     {
       "type": "PATTERN",
       "value": "[ \\t\\r\\n]"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

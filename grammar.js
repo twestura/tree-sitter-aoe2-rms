@@ -11,8 +11,8 @@ export default grammar({
   name: "aoe2_rms",
 
   // TODO use only ascii whitespace, check whether vertical tab and form feed count
-  extras: ($) => [/[ \t\r\n]/],
-  // extras: ($) => [/[ \t\r\n\v\f]/],
+  extras: ($) => [/[ \t\r\n]/, $.comment],
+  // extras: ($) => [/[ \t\r\n\v\f, $.comment]/],
 
   rules: {
     source_file: ($) => repeat($._definition),
@@ -21,5 +21,6 @@ export default grammar({
     const_statement: ($) => seq("#const", $.identifier, $.integer),
     identifier: ($) => /\S+/,
     integer: ($) => /[0-9]+/,
+    comment: ($) => /\/\*[^*]*\*+([^/*][^*]*\*+)*\//,
   },
 });
