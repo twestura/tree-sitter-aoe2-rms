@@ -1,0 +1,12 @@
+start_random
+  percent_chance 50
+    #define DESERT_MAP
+    #const HERD DLC_GOAT
+    #const LURE DLC_ELEPHANT
+    #const HUNT DLC_OSTRICH
+  percent_chance 50
+    #define GRASS_MAP
+    #const HERD SHEEP
+    #const LURE BOAR
+    #const HUNT DEER
+end_random

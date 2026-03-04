@@ -1,0 +1,12 @@
+<OBJECTS_GENERATION>
+if DESERT_MAP
+  create_object PALMTREE {
+    number_of_objects 3
+    set_place_for_every_player
+    min_distance_to_players 6
+    max_distance_to_players 8
+    set_gaia_object_only
+    avoid_forest_zone 2
+    temp_min_distance_group_placement 3
+  }
+endif

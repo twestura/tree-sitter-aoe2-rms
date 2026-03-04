@@ -1,0 +1,20 @@
+start_random
+  percent_chance 50 #define A
+  percent_chance 50 #define B
+end_random
+
+if A
+  start_random
+    percent_chance 25 #define BLUE
+    percent_chance 25 #define RED
+    percent_chance 25 #define GREEN
+    percent_chance 25 #define YELLOW
+  end_random
+elseif B
+  start_random
+    percent_chance 25 #define CYAN
+    percent_chance 25 #define PURPLE
+    percent_chance 25 #define GRAY
+    percent_chance 25 #define ORANGE
+  end_random
+endif

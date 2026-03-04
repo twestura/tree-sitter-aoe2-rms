@@ -10,9 +10,19 @@
 export default grammar({
   name: "aoe2_rms",
 
-  // TODO use check whether vertical tabs and form feeds count as whitespace
+  // TODO check whether vertical tabs and form feeds count as whitespace
   // Also apply the same change to the identifier
-  extras: ($) => [/[ \t\r\n]/, $.comment],
+  extras: ($) => [
+    /[ \t\r\n]/,
+    $.comment,
+    $.if_directive,
+    $.elseif_directive,
+    $.else_directive,
+    $.endif_directive,
+    $.start_random_directive,
+    $.percent_chance_directive,
+    $.end_random_directive,
+  ],
 
   // Note the grammar is limited in it's current highlighting of comments that
   // it incorrectly treats as comments sequences such as /*text*/ that do not
@@ -296,16 +306,34 @@ export default grammar({
     include_drs: ($) => seq("#include_drs", $.filepath),
     include_xs: ($) => seq("#includeXS", $.filepath),
 
-    _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier),
+    _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier, $.math_expr),
     integer: ($) => token(prec(1, /[+-]?[0-9]+/)),
     float: ($) => token(prec(1, /[+-]?(inf|[0-9]*\.[0-9]+)/)),
     identifier: ($) => /[^ \t\n\r]+/,
     rnd: ($) => seq(token(prec(1, "rnd")), "(", $.integer, ",", $.integer, ")"),
+    math_expr: ($) =>
+      seq(
+        token(prec(1, "(")),
+        $._math_operand,
+        repeat(seq($._math_operator, $._math_operand)),
+        ")",
+      ),
+    _math_operand: ($) => choice($.integer, $.float, $.identifier),
+    _math_operator: ($) => choice("+", "-", "*", "/", "%"),
 
     filepath: ($) => choice($.string, $.filename),
     // https://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes
     string: ($) => token(prec(1, /"(?:[^"\\]|\\.)*"/)),
     filename: ($) => /[^ \t\n\r]+/,
+
+    if_directive: ($) => seq("if", $.identifier),
+    elseif_directive: ($) => seq("elseif", $.identifier),
+    else_directive: ($) => "else",
+    endif_directive: ($) => "endif",
+
+    start_random_directive: ($) => "start_random",
+    percent_chance_directive: ($) => seq("percent_chance", $.integer),
+    end_random_directive: ($) => "end_random",
 
     comment: ($) =>
       choice(

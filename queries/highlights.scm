@@ -7,14 +7,17 @@
   "#define"
   "#include_drs"
   "#includeXS"
-  ; "if"
-  ; "elseif"
-  ; "else"
-  ; "endif"
   ; "start_random"
   ; "percent_chance"
   ; "end_random"
 ] @keyword
+
+(if_directive "if" @keyword)
+(elseif_directive "elseif" @keyword)
+(else_directive) @keyword
+(endif_directive) @keyword
+(start_random_directive) @keyword
+(end_random_directive) @keyword
 
 ; Section titles
 [
@@ -172,6 +175,9 @@
 (create_terrain_attribute
   "base_terrain" @property)
 
+(percent_chance_directive
+  "percent_chance" @property)
+
 [
   "{"
   "}"
@@ -180,6 +186,14 @@
 ] @punctuation.bracket
 
 "," @punctuation.delimiter
+
+[
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+] @operator
 
 (identifier) @constant
 (integer) @number

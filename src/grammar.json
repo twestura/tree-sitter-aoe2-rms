@@ -2049,6 +2049,10 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "math_expr"
         }
       ]
     },
@@ -2114,6 +2118,88 @@
         }
       ]
     },
+    "math_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "("
+            }
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_math_operand"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_math_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_math_operand"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "_math_operand": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "_math_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "+"
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "STRING",
+          "value": "%"
+        }
+      ]
+    },
     "filepath": {
       "type": "CHOICE",
       "members": [
@@ -2141,6 +2227,61 @@
     "filename": {
       "type": "PATTERN",
       "value": "[^ \\t\\n\\r]+"
+    },
+    "if_directive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "elseif_directive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "elseif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "else_directive": {
+      "type": "STRING",
+      "value": "else"
+    },
+    "endif_directive": {
+      "type": "STRING",
+      "value": "endif"
+    },
+    "start_random_directive": {
+      "type": "STRING",
+      "value": "start_random"
+    },
+    "percent_chance_directive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "percent_chance"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        }
+      ]
+    },
+    "end_random_directive": {
+      "type": "STRING",
+      "value": "end_random"
     },
     "comment": {
       "type": "CHOICE",
@@ -2214,6 +2355,34 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "if_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "elseif_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "else_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "endif_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "start_random_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "percent_chance_directive"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "end_random_directive"
     }
   ],
   "conflicts": [],

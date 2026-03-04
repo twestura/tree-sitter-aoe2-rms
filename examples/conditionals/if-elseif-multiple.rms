@@ -1,0 +1,6 @@
+if LABEL0
+elseif LABEL1
+elseif LABEL2
+elseif LABEL3
+else
+endif

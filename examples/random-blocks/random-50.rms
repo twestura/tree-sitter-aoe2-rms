@@ -1,0 +1,4 @@
+start_random
+  percent_chance 50 #define LABEL0
+  percent_chance 50 #define LABEL1
+end_random
