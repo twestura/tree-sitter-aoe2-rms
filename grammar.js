@@ -187,7 +187,7 @@ export default grammar({
         seq("clumping_factor", $._arg),
         seq("set_scale_by_size", $._arg),
         "set_scale_by_groups",
-        seq("set_avoid_player_start_areas", $._arg),
+        seq("set_avoid_player_start_areas", optional($._arg)),
         seq("height_limits", $._arg, $._arg),
       ),
 

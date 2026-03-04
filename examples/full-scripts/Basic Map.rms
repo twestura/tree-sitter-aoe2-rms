@@ -1,0 +1,268 @@
+#const MUD 76
+
+start_random
+  percent_chance 50 #define GRASS_MAP
+  percent_chance 50 #define DESERT_MAP
+end_random
+
+if GRASS_MAP
+  #const BASE_TERRAIN GRASS
+  #const PRIMARY_FOREST FOREST
+  #const CLIFF_TYPE CT_GRANITE
+  #const HERD SHEEP
+  #const LURE BOAR
+  #const HUNT DEER
+  #const PREDATOR WOLF
+  #const STRAGGLER OAKTREE
+elseif DESERT_MAP
+  #const BASE_TERRAIN DESERT
+  #const PRIMARY_FOREST PALM_DESERT
+  #const CLIFF_TYPE CT_DESERT
+  #const HERD DLC_GOAT
+  #const LURE DLC_ELEPHANT
+  #const HUNT DLC_ZEBRA
+  #const PREDATOR ARABIAN_WOLF
+  #const STRAGGLER PALMTREE
+endif
+
+<PLAYER_SETUP>
+random_placement
+behavior_version 2
+
+<LAND_GENERATION>
+base_terrain BASE_TERRAIN
+create_player_lands {
+  terrain_type BASE_TERRAIN
+}
+
+<ELEVATION_GENERATION>
+create_elevation 4 {
+  base_terrain BASE_TERRAIN
+  number_of_tiles 3000
+  number_of_clumps 20
+}
+
+<CLIFF_GENERATION>
+cliff_type CLIFF_TYPE
+
+<TERRAIN_GENERATION>
+create_terrain PRIMARY_FOREST {
+  base_terrain BASE_TERRAIN
+  set_avoid_player_start_areas
+  land_percent 12
+  number_of_clumps 14
+  set_scale_by_groups
+  spacing_to_other_terrain_types 5
+}
+
+if GRASS_MAP
+  create_terrain MUD {
+    base_terrain BASE_TERRAIN
+    land_percent 6
+    number_of_clumps 8
+    terrain_mask 2
+  }
+elseif DESERT_MAP
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+  create_terrain DIRT2 { base_terrain PRIMARY_FOREST land_percent 100 number_of_clumps 8196 terrain_mask 1 }
+endif
+
+<OBJECTS_GENERATION>
+create_object HAWK {
+  number_of_objects 6
+  set_scaling_to_map_size
+}
+
+create_object TOWN_CENTER {
+  set_place_for_every_player
+  max_distance_to_players 0
+}
+
+create_object VILLAGER {
+  set_place_for_every_player
+  min_distance_to_players 6
+  max_distance_to_players 6
+}
+
+create_object SCOUT {
+  set_place_for_every_player
+  min_distance_to_players 7
+  max_distance_to_players 9
+}
+
+if REGICIDE
+  create_object KING {
+    set_place_for_every_player
+    min_distance_to_players 6
+    max_distance_to_players 6
+  }
+
+  create_object VILLAGER {
+    set_place_for_every_player
+    min_distance_to_players 6
+    max_distance_to_players 6
+  }
+
+  create_object CASTLE {
+    set_place_for_every_player
+    min_distance_to_players 8
+    max_distance_to_players 12
+    find_closest_to_map_center
+    avoid_cliff_zone 5
+    avoid_forest_zone 3
+    min_distance_group_placement 7
+  }
+endif
+
+create_object FORAGE {
+  number_of_objects 6
+  set_place_for_every_player
+  set_gaia_object_only
+  set_tight_grouping
+  min_distance_to_players 12
+  max_distance_to_players 26
+  min_distance_group_placement 7
+  avoid_cliff_zone 5
+}
+
+create_object GOLD {
+  number_of_objects 7
+  set_place_for_every_player
+  set_gaia_object_only
+  set_tight_grouping
+  min_distance_to_players 14
+  max_distance_to_players 18
+  min_distance_group_placement 7
+  avoid_cliff_zone 5
+}
+
+create_object STONE {
+  number_of_objects 5
+  set_place_for_every_player
+  set_gaia_object_only
+  set_tight_grouping
+  min_distance_to_players 16
+  max_distance_to_players 20
+  min_distance_group_placement 7
+  avoid_cliff_zone 5
+}
+
+create_object GOLD {
+  number_of_objects 4
+  number_of_groups 2
+  set_place_for_every_player
+  set_gaia_object_only
+  set_tight_grouping
+  min_distance_to_players 18
+  max_distance_to_players 28
+  min_distance_group_placement 6
+  temp_min_distance_group_placement 10
+  avoid_cliff_zone 5
+}
+
+create_object STONE {
+  number_of_objects 4
+  set_place_for_every_player
+  set_gaia_object_only
+  set_tight_grouping
+  min_distance_to_players 20
+  max_distance_to_players 26
+  min_distance_group_placement 6
+  avoid_cliff_zone 5
+}
+
+create_object HUNT {
+  set_place_for_every_player
+  number_of_objects 4
+  set_gaia_object_only
+  set_loose_grouping
+  set_circular_placement
+  min_distance_to_players 20
+  max_distance_to_players 24
+}
+
+create_object LURE {
+  number_of_objects 2
+  set_place_for_every_player
+  set_gaia_object_only
+  set_circular_placement
+  min_distance_to_players 16
+  max_distance_to_players 22
+  avoid_forest_zone 1
+  avoid_cliff_zone 3
+  temp_min_distance_group_placement 8
+}
+
+create_object HERD {
+  number_of_objects 2
+  number_of_groups 2
+  set_place_for_every_player
+  set_gaia_object_only
+  min_distance_to_players 16
+  max_distance_to_players 22
+  avoid_forest_zone 1
+  avoid_cliff_zone 3
+  temp_min_distance_group_placement 8
+}
+
+create_object STRAGGLER {
+  set_place_for_every_player
+  number_of_objects 5
+  set_gaia_object_only
+  min_distance_to_players 4
+  max_distance_to_players 8
+  avoid_forest_zone 1
+  temp_min_distance_group_placement 3
+}
+
+create_object GOLD {
+  number_of_objects 3
+  number_of_groups 2
+  set_scaling_to_map_size
+  set_tight_grouping
+  min_distance_to_players 16
+  avoid_cliff_zone 4
+}
+
+create_object STONE {
+  number_of_objects 2
+  number_of_groups 2
+  set_scaling_to_map_size
+  set_tight_grouping
+  min_distance_to_players 16
+  avoid_cliff_zone 4
+}
+
+create_object RELIC {
+  number_of_objects 5
+  min_distance_to_players 30
+  set_circular_placement
+  temp_min_distance_group_placement 35
+  min_distance_group_placement 1
+  avoid_cliff_zone 4
+}
+
+create_object PREDATOR {
+  number_of_objects 4
+  set_scaling_to_map_size
+  min_distance_group_placement 1
+  temp_min_distance_group_placement 40
+  min_distance_to_players 45
+  set_circular_placement
+  avoid_cliff_zone 4
+}
+
+create_object STRAGGLER {
+  number_of_objects 12
+  set_scaling_to_map_size
+  avoid_forest_zone 2
+  avoid_cliff_zone 4
+  temp_min_distance_group_placement 2
+  min_distance_to_players 18
+}

@@ -7,9 +7,6 @@
   "#define"
   "#include_drs"
   "#includeXS"
-  ; "start_random"
-  ; "percent_chance"
-  ; "end_random"
 ] @keyword
 
 (if_directive "if" @keyword)
@@ -53,6 +50,7 @@
   "create_player_lands"
   "create_land"
   "create_elevation"
+  "create_terrain"
   "cliff_type"
   "min_number_of_cliffs"
   "max_number_of_cliffs"
@@ -78,7 +76,6 @@
 
 ; Attribute names
 [
-  ; "percent_chance"
   "terrain_type"
   "land_percent"
   "number_of_tiles"
@@ -200,7 +197,3 @@
 (float) @number
 (string) @string
 (filename) @string
-
-; TODO if
-; TODO random blocks
-; TODO math expressions

@@ -1245,8 +1245,16 @@
               "value": "set_avoid_player_start_areas"
             },
             {
-              "type": "SYMBOL",
-              "name": "_arg"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_arg"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         },
