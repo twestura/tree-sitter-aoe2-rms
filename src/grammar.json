@@ -159,10 +159,6 @@
             {
               "type": "SYMBOL",
               "name": "_arg"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_arg"
             }
           ]
         },
@@ -1221,17 +1217,8 @@
           ]
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "set_scale_by_size"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_arg"
-            }
-          ]
+          "type": "STRING",
+          "value": "set_scale_by_size"
         },
         {
           "type": "STRING",
@@ -2179,32 +2166,71 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "math_identifier"
         }
       ]
+    },
+    "math_identifier": {
+      "type": "PATTERN",
+      "value": "[^ \\t\\n\\r]*[^ \\t\\n\\r)]"
     },
     "_math_operator": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "+"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "+"
+            }
+          }
         },
         {
-          "type": "STRING",
-          "value": "-"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "-"
+            }
+          }
         },
         {
-          "type": "STRING",
-          "value": "*"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "*"
+            }
+          }
         },
         {
-          "type": "STRING",
-          "value": "/"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "/"
+            }
+          }
         },
         {
-          "type": "STRING",
-          "value": "%"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "%"
+            }
+          }
         }
       ]
     },

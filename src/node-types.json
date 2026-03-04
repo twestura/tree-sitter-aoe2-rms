@@ -560,11 +560,11 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "integer",
+          "type": "math_identifier",
           "named": true
         }
       ]
@@ -1260,6 +1260,10 @@
   {
     "type": "match_player_civ",
     "named": false
+  },
+  {
+    "type": "math_identifier",
+    "named": true
   },
   {
     "type": "max_distance_to_other_zones",

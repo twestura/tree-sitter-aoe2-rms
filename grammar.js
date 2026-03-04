@@ -60,7 +60,7 @@ export default grammar({
         seq("behavior_version", $._arg),
         seq("override_map_size", $._arg),
         seq("set_gaia_civilization", $._arg),
-        seq("ai_info_map_type", $._arg, $._arg, $._arg, $._arg),
+        seq("ai_info_map_type", $._arg, $._arg, $._arg),
         seq("effect_amount", $._arg, $._arg, $._arg, $._arg),
         seq("effect_percent", $._arg, $._arg, $._arg, $._arg),
         seq("guard_state", $._arg, $._arg, $._arg, $._arg),
@@ -185,7 +185,7 @@ export default grammar({
         seq("number_of_tiles", $._arg),
         seq("number_of_clumps", $._arg),
         seq("clumping_factor", $._arg),
-        seq("set_scale_by_size", $._arg),
+        "set_scale_by_size",
         "set_scale_by_groups",
         seq("set_avoid_player_start_areas", optional($._arg)),
         seq("height_limits", $._arg, $._arg),
@@ -318,8 +318,16 @@ export default grammar({
         repeat(seq($._math_operator, $._math_operand)),
         ")",
       ),
-    _math_operand: ($) => choice($.integer, $.float, $.identifier),
-    _math_operator: ($) => choice("+", "-", "*", "/", "%"),
+    _math_operand: ($) => choice($.integer, $.float, $.math_identifier),
+    math_identifier: ($) => /[^ \t\n\r]*[^ \t\n\r)]/, // Cannot end with a parenthesis.
+    _math_operator: ($) =>
+      choice(
+        token(prec(1, "+")),
+        token(prec(1, "-")),
+        token(prec(1, "*")),
+        token(prec(1, "/")),
+        token(prec(1, "%")),
+      ),
 
     filepath: ($) => choice($.string, $.filename),
     // https://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes

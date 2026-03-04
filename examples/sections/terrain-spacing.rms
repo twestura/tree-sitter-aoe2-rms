@@ -1,0 +1,7 @@
+<TERRAIN_GENERATION>
+create_terrain DIRT {
+  base_terrain GRASS
+  spacing_to_specific_terrain DESERT 5
+  number_of_clumps (64 * MAPSCALE_SIDE)
+  spacing_to_other_terrain_types 3
+}

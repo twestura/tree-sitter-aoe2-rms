@@ -50,6 +50,7 @@
   "create_player_lands"
   "create_land"
   "create_elevation"
+  "color_correction"
   "create_terrain"
   "cliff_type"
   "min_number_of_cliffs"
@@ -193,6 +194,7 @@
 ] @operator
 
 (identifier) @constant
+(math_identifier) @constant
 (integer) @number
 (float) @number
 (string) @string
