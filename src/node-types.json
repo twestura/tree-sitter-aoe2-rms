@@ -18,6 +18,14 @@
         {
           "type": "define_statement",
           "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
+          "named": true
         }
       ]
     }
@@ -40,6 +48,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
           "named": true
         }
       ]
@@ -80,6 +92,14 @@
         {
           "type": "define_statement",
           "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
+          "named": true
         }
       ]
     }
@@ -89,7 +109,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
@@ -118,6 +138,10 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
         }
       ]
     }
@@ -140,6 +164,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
           "named": true
         }
       ]
@@ -164,6 +192,10 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
         }
       ]
     }
@@ -186,6 +218,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
           "named": true
         }
       ]
@@ -210,6 +246,10 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
         }
       ]
     }
@@ -232,6 +272,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
           "named": true
         }
       ]
@@ -271,6 +315,14 @@
         {
           "type": "elevation_generation_command",
           "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
+          "named": true
         }
       ]
     }
@@ -298,6 +350,69 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "filename",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "filepath",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "include_drs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filepath",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include_xs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filepath",
+          "named": true
         }
       ]
     }
@@ -319,6 +434,14 @@
           "named": true
         },
         {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
+          "named": true
+        },
+        {
           "type": "land_generation_command",
           "named": true
         }
@@ -331,7 +454,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "create_land_attribute",
@@ -347,6 +470,10 @@
         },
         {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
           "named": true
         }
       ]
@@ -366,6 +493,14 @@
         },
         {
           "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
           "named": true
         },
         {
@@ -398,6 +533,10 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
         }
       ]
     }
@@ -416,6 +555,14 @@
         },
         {
           "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
           "named": true
         },
         {
@@ -441,6 +588,25 @@
           "type": "identifier",
           "named": true
         },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rnd",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "integer",
           "named": true
@@ -505,6 +671,14 @@
           "named": true
         },
         {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
+          "named": true
+        },
+        {
           "type": "section",
           "named": true
         }
@@ -525,6 +699,14 @@
         },
         {
           "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "include_drs",
+          "named": true
+        },
+        {
+          "type": "include_xs",
           "named": true
         },
         {
@@ -557,6 +739,10 @@
         {
           "type": "integer",
           "named": true
+        },
+        {
+          "type": "rnd",
+          "named": true
         }
       ]
     }
@@ -570,11 +756,31 @@
     "named": false
   },
   {
+    "type": "#includeXS",
+    "named": false
+  },
+  {
+    "type": "#include_drs",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": "**",
     "named": false
   },
   {
     "type": "*/",
+    "named": false
+  },
+  {
+    "type": ",",
     "named": false
   },
   {
@@ -854,10 +1060,6 @@
     "named": false
   },
   {
-    "type": "identifier",
-    "named": true
-  },
-  {
     "type": "ignore_terrain_restrictions",
     "named": false
   },
@@ -1010,6 +1212,10 @@
     "named": false
   },
   {
+    "type": "rnd",
+    "named": false
+  },
+  {
     "type": "second_object",
     "named": false
   },
@@ -1096,6 +1302,10 @@
   {
     "type": "spacing_to_specific_terrain",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "temp_min_distance_group_placement",

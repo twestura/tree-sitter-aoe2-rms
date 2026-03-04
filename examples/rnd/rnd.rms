@@ -1,0 +1,6 @@
+<LAND_GENERATION>
+base_terrain GRASS
+create_land {
+  land_position rnd(20,30) rnd(55,65)
+  terrain_type DIRT
+}

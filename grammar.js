@@ -72,7 +72,7 @@ export default grammar({
         seq(
           choice("create_player_lands", "create_land", $.identifier),
           "{",
-          $.create_land_attribute,
+          repeat($.create_land_attribute),
           "}",
         ),
       ),
@@ -110,7 +110,13 @@ export default grammar({
         repeat(choice($.elevation_generation_command, $._global_statement)),
       ),
     elevation_generation_command: ($) =>
-      seq("create_elevation", $._arg, "{", $.create_elevation_attribute, "}"),
+      seq(
+        "create_elevation",
+        $._arg,
+        "{",
+        repeat($.create_elevation_attribute),
+        "}",
+      ),
     create_elevation_attribute: ($) =>
       choice(
         seq("base_terrain", $._arg),
@@ -148,7 +154,13 @@ export default grammar({
     terrain_generation_command: ($) =>
       choice(
         seq("color_correction", $._arg),
-        seq("create_terrain", $._arg, "{", $.create_terrain_attribute, "}"),
+        seq(
+          "create_terrain",
+          $._arg,
+          "{",
+          repeat($.create_terrain_attribute),
+          "}",
+        ),
       ),
     create_terrain_attribute: ($) =>
       choice(
@@ -187,7 +199,7 @@ export default grammar({
             "create_connect_to_nonplayer_land",
           ),
           "{",
-          $.create_connect_attribute,
+          repeat($.create_connect_attribute),
           "}",
         ),
       ),
@@ -214,7 +226,13 @@ export default grammar({
           repeat(seq("add_object", $._arg, $._arg)),
           "}",
         ),
-        seq("create_object", $.identifier, "{", $.create_object_attribute, "}"),
+        seq(
+          "create_object",
+          $.identifier,
+          "{",
+          repeat($.create_object_attribute),
+          "}",
+        ),
       ),
     create_object_attribute: ($) =>
       choice(
@@ -266,14 +284,28 @@ export default grammar({
         "match_player_civ",
       ),
 
-    _global_statement: ($) => choice($.define_statement, $.const_statement),
+    _global_statement: ($) =>
+      choice(
+        $.define_statement,
+        $.const_statement,
+        $.include_drs,
+        $.include_xs,
+      ),
     define_statement: ($) => seq("#define", $.identifier),
     const_statement: ($) => seq("#const", $.identifier, $._arg),
+    include_drs: ($) => seq("#include_drs", $.filepath),
+    include_xs: ($) => seq("#includeXS", $.filepath),
 
-    _arg: ($) => choice($.integer, $.float, $.identifier),
+    _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier),
     integer: ($) => token(prec(1, /[+-]?[0-9]+/)),
     float: ($) => token(prec(1, /[+-]?(inf|[0-9]*\.[0-9]+)/)),
     identifier: ($) => /[^ \t\n\r]+/,
+    rnd: ($) => seq(token(prec(1, "rnd")), "(", $.integer, ",", $.integer, ")"),
+
+    filepath: ($) => choice($.string, $.filename),
+    // https://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes
+    string: ($) => token(prec(1, /"(?:[^"\\]|\\.)*"/)),
+    filename: ($) => /[^ \t\n\r]+/,
 
     comment: ($) =>
       choice(

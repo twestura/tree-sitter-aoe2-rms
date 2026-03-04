@@ -5,8 +5,8 @@
 [
   "#const"
   "#define"
-  ; "#include_drs"
-  ; "includeXS"
+  "#include_drs"
+  "#includeXS"
   ; "if"
   ; "elseif"
   ; "else"
@@ -27,8 +27,9 @@
   "<OBJECTS_GENERATION>"
 ] @tag
 
-; Command names
+; rnd and Command names
 [
+  "rnd"
   "random_placement"
   "direct_placement"
   "grouped_by_team"
@@ -74,6 +75,7 @@
 
 ; Attribute names
 [
+  ; "percent_chance"
   "terrain_type"
   "land_percent"
   "number_of_tiles"
@@ -115,6 +117,7 @@
   "replace_terrain"
   "terrain_cost"
   "terrain_size"
+  "add_object"
   "number_of_objects"
   "number_of_groups"
   "group_variance"
@@ -172,14 +175,18 @@
 [
   "{"
   "}"
+  "("
+  ")"
 ] @punctuation.bracket
+
+"," @punctuation.delimiter
 
 (identifier) @constant
 (integer) @number
 (float) @number
+(string) @string
+(filename) @string
 
 ; TODO if
 ; TODO random blocks
-; TODO rnd
-; TODO includes
 ; TODO math expressions
