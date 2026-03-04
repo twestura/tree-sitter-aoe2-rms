@@ -1,5 +1,21 @@
 [
   {
+    "type": "comment",
+    "named": true,
+    "extra": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "const_statement",
     "named": true,
     "fields": {},
@@ -62,9 +78,24 @@
     "named": false
   },
   {
-    "type": "comment",
-    "named": true,
-    "extra": true
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "*/",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "/***/",
+    "named": false
+  },
+  {
+    "type": "/**/",
+    "named": false
   },
   {
     "type": "identifier",

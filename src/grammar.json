@@ -61,8 +61,67 @@
       "value": "[0-9]+"
     },
     "comment": {
-      "type": "PATTERN",
-      "value": "\\/\\*[^*]*\\*+([^/*][^*]*\\*+)*\\/"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "/*"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^*]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "**"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "comment"
+                }
+              ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "comment"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[^*]"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "\\*[^/]"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "*/"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "/**/"
+        },
+        {
+          "type": "STRING",
+          "value": "/***/"
+        }
+      ]
     }
   },
   "extras": [
