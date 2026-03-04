@@ -1,0 +1,7 @@
+<TERRAIN_GENERATION>
+create_terrain GRASS {
+  base_terrain DIRT
+  set_avoid_player_start_areas
+  land_percent 100
+  number_of_clumps 8192
+}

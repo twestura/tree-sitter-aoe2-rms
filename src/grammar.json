@@ -3,13 +3,1943 @@
   "name": "aoe2_rms",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_definition"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_global_statement"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "section"
+          }
+        }
+      ]
     },
-    "_definition": {
+    "section": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "player_setup"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "land_generation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "elevation_generation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "cliff_generation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "terrain_generation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "connection_generation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "objects_generation"
+        }
+      ]
+    },
+    "player_setup": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<PLAYER_SETUP>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "player_setup_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "player_setup_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "random_placement"
+        },
+        {
+          "type": "STRING",
+          "value": "direct_placement"
+        },
+        {
+          "type": "STRING",
+          "value": "grouped_by_team"
+        },
+        {
+          "type": "STRING",
+          "value": "nomad_resources"
+        },
+        {
+          "type": "STRING",
+          "value": "force_nomad_treaty"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "behavior_version"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "override_map_size"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "set_gaia_civilization"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ai_info_map_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "effect_amount"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "effect_percent"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "guard_state"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_state"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "weather_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "water_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        }
+      ]
+    },
+    "land_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<LAND_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "land_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "land_generation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_layer"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "enable_waves"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "create_player_lands"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_land"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "create_land_attribute"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        }
+      ]
+    },
+    "create_land_attribute": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "land_percent"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_tiles"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_size"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_circular_base"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "generate_mode"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "land_position"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "circle_radius"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_arg"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "left_border"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "right_border"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "top_border"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "bottom_border"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "border_fuzziness"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "clumping_factor"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "land_conformity"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_elevation"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "assign_to_player"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "assign_to"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "zone"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_zone_by_team"
+        },
+        {
+          "type": "STRING",
+          "value": "set_zone_randomly"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "other_zone_avoidance_distance"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_placement_distance"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "land_id"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        }
+      ]
+    },
+    "elevation_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<ELEVATION_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "elevation_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "elevation_generation_command": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "create_elevation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_arg"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "create_elevation_attribute"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "create_elevation_attribute": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_layer"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_tiles"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_clumps"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_scale_by_size"
+        },
+        {
+          "type": "STRING",
+          "value": "set_scale_by_groups"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "spacing"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "enable_balanced_elevation"
+        }
+      ]
+    },
+    "cliff_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<CLIFF_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "cliff_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "cliff_generation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "cliff_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_number_of_cliffs"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "max_number_of_cliffs"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_length_of_cliff"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "max_length_of_cliff"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "cliff_curliness"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_distance_cliffs"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_terrain_distance"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        }
+      ]
+    },
+    "terrain_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<TERRAIN_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "terrain_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "terrain_generation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "color_correction"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "create_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "create_terrain_attribute"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        }
+      ]
+    },
+    "create_terrain_attribute": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "base_layer"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "beach_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_mask"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "spacing_to_other_terrain_types"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "spacing_to_specific_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "set_flat_terrain_only"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "land_percent"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_tiles"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_clumps"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "clumping_factor"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "set_scale_by_size"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_scale_by_groups"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "set_avoid_player_start_areas"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "height_limits"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        }
+      ]
+    },
+    "connection_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<CONNECTION_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "connection_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "connection_generation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "accumulate_connections"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "create_connect_all_players_land"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_connect_teams_lands"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_connect_all_lands"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_connect_same_land_zones"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_connect_land_zones"
+                },
+                {
+                  "type": "STRING",
+                  "value": "create_connect_to_nonplayer_land"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "create_connect_attribute"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        }
+      ]
+    },
+    "create_connect_attribute": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "default_terrain_replacement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "replace_terrain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_cost"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_size"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        }
+      ]
+    },
+    "objects_generation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<OBJECTS_GENERATION>"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "objects_generation_command"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_global_statement"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "objects_generation_command": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "create_actor_area"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "create_object_group"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "add_object"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_arg"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_arg"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "create_object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "create_object_attribute"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        }
+      ]
+    },
+    "create_object_attribute": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_objects"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "number_of_groups"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "group_variance"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "group_placement_radius"
+        },
+        {
+          "type": "STRING",
+          "value": "set_tight_grouping"
+        },
+        {
+          "type": "STRING",
+          "value": "set_loose_grouping"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_connected_tiles"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "resource_delta"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "second_object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_scaling_to_map_size"
+        },
+        {
+          "type": "STRING",
+          "value": "set_scaling_to_player_number"
+        },
+        {
+          "type": "STRING",
+          "value": "set_place_for_every_player"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "place_on_specific_land_id"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "avoid_other_land_zones"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "generate_for_first_land_only"
+        },
+        {
+          "type": "STRING",
+          "value": "set_gaia_object_only"
+        },
+        {
+          "type": "STRING",
+          "value": "set_gaia_unconvertible"
+        },
+        {
+          "type": "STRING",
+          "value": "set_building_capturable"
+        },
+        {
+          "type": "STRING",
+          "value": "make_indestructible"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_distance_to_players"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "max_distance_to_players"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "set_circular_placement"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "terrain_to_place_on"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "layer_to_place_on"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "ignore_terrain_restrictions"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "max_distance_to_other_zones"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "place_on_forest_zone"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "avoid_forest_zone"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "avoid_cliff_zone"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_distance_to_map_edge"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "min_distance_group_placement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "temp_min_distance_group_placement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "find_closest"
+        },
+        {
+          "type": "STRING",
+          "value": "find_closest_to_map_center"
+        },
+        {
+          "type": "STRING",
+          "value": "find_closest_to_map_edge"
+        },
+        {
+          "type": "STRING",
+          "value": "enable_tile_shuffling"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "require_path"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "force_placement"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "actor_area"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "actor_area_radius"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "override_actor_radius_if_required"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "actor_area_to_place_in"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "avoid_actor_area"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "avoid_all_actor_areas"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "set_facet"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_arg"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "match_player_civ"
+        }
+      ]
+    },
+    "_global_statement": {
       "type": "CHOICE",
       "members": [
         {
@@ -48,17 +1978,52 @@
         },
         {
           "type": "SYMBOL",
-          "name": "integer"
+          "name": "_arg"
         }
       ]
     },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "\\S+"
+    "_arg": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
     },
     "integer": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[+-]?[0-9]+"
+        }
+      }
+    },
+    "float": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[+-]?(inf|[0-9]*\\.[0-9]+)"
+        }
+      }
+    },
+    "identifier": {
       "type": "PATTERN",
-      "value": "[0-9]+"
+      "value": "[^ \\t\\n\\r]+"
     },
     "comment": {
       "type": "CHOICE",

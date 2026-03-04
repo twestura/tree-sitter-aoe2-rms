@@ -1,5 +1,51 @@
 [
   {
+    "type": "cliff_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cliff_generation_command",
+          "named": true
+        },
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cliff_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true,
@@ -16,6 +62,44 @@
     }
   },
   {
+    "type": "connection_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "connection_generation_command",
+          "named": true
+        },
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "connection_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "create_connect_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "const_statement",
     "named": true,
     "fields": {},
@@ -23,6 +107,125 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_connect_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_elevation_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_land_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_object_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_terrain_attribute",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -50,6 +253,241 @@
     }
   },
   {
+    "type": "elevation_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "elevation_generation_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elevation_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "create_elevation_attribute",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "land_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "land_generation_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "land_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "create_land_attribute",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objects_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "objects_generation_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objects_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "create_object_attribute",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "player_setup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "player_setup_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "player_setup_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cliff_generation",
+          "named": true
+        },
+        {
+          "type": "connection_generation",
+          "named": true
+        },
+        {
+          "type": "elevation_generation",
+          "named": true
+        },
+        {
+          "type": "land_generation",
+          "named": true
+        },
+        {
+          "type": "objects_generation",
+          "named": true
+        },
+        {
+          "type": "player_setup",
+          "named": true
+        },
+        {
+          "type": "terrain_generation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -64,6 +502,60 @@
         },
         {
           "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "section",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "terrain_generation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "const_statement",
+          "named": true
+        },
+        {
+          "type": "define_statement",
+          "named": true
+        },
+        {
+          "type": "terrain_generation_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "terrain_generation_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "create_terrain_attribute",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
           "named": true
         }
       ]
@@ -98,11 +590,563 @@
     "named": false
   },
   {
+    "type": "<CLIFF_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "<CONNECTION_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "<ELEVATION_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "<LAND_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "<OBJECTS_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "<PLAYER_SETUP>",
+    "named": false
+  },
+  {
+    "type": "<TERRAIN_GENERATION>",
+    "named": false
+  },
+  {
+    "type": "accumulate_connections",
+    "named": false
+  },
+  {
+    "type": "actor_area",
+    "named": false
+  },
+  {
+    "type": "actor_area_radius",
+    "named": false
+  },
+  {
+    "type": "actor_area_to_place_in",
+    "named": false
+  },
+  {
+    "type": "add_object",
+    "named": false
+  },
+  {
+    "type": "ai_info_map_type",
+    "named": false
+  },
+  {
+    "type": "assign_to",
+    "named": false
+  },
+  {
+    "type": "assign_to_player",
+    "named": false
+  },
+  {
+    "type": "avoid_actor_area",
+    "named": false
+  },
+  {
+    "type": "avoid_all_actor_areas",
+    "named": false
+  },
+  {
+    "type": "avoid_cliff_zone",
+    "named": false
+  },
+  {
+    "type": "avoid_forest_zone",
+    "named": false
+  },
+  {
+    "type": "avoid_other_land_zones",
+    "named": false
+  },
+  {
+    "type": "base_elevation",
+    "named": false
+  },
+  {
+    "type": "base_layer",
+    "named": false
+  },
+  {
+    "type": "base_size",
+    "named": false
+  },
+  {
+    "type": "base_terrain",
+    "named": false
+  },
+  {
+    "type": "beach_terrain",
+    "named": false
+  },
+  {
+    "type": "behavior_version",
+    "named": false
+  },
+  {
+    "type": "border_fuzziness",
+    "named": false
+  },
+  {
+    "type": "bottom_border",
+    "named": false
+  },
+  {
+    "type": "circle_radius",
+    "named": false
+  },
+  {
+    "type": "cliff_curliness",
+    "named": false
+  },
+  {
+    "type": "cliff_type",
+    "named": false
+  },
+  {
+    "type": "clumping_factor",
+    "named": false
+  },
+  {
+    "type": "color_correction",
+    "named": false
+  },
+  {
+    "type": "create_actor_area",
+    "named": false
+  },
+  {
+    "type": "create_connect_all_lands",
+    "named": false
+  },
+  {
+    "type": "create_connect_all_players_land",
+    "named": false
+  },
+  {
+    "type": "create_connect_land_zones",
+    "named": false
+  },
+  {
+    "type": "create_connect_same_land_zones",
+    "named": false
+  },
+  {
+    "type": "create_connect_teams_lands",
+    "named": false
+  },
+  {
+    "type": "create_connect_to_nonplayer_land",
+    "named": false
+  },
+  {
+    "type": "create_elevation",
+    "named": false
+  },
+  {
+    "type": "create_land",
+    "named": false
+  },
+  {
+    "type": "create_object",
+    "named": false
+  },
+  {
+    "type": "create_object_group",
+    "named": false
+  },
+  {
+    "type": "create_player_lands",
+    "named": false
+  },
+  {
+    "type": "create_terrain",
+    "named": false
+  },
+  {
+    "type": "default_terrain_replacement",
+    "named": false
+  },
+  {
+    "type": "direct_placement",
+    "named": false
+  },
+  {
+    "type": "effect_amount",
+    "named": false
+  },
+  {
+    "type": "effect_percent",
+    "named": false
+  },
+  {
+    "type": "enable_balanced_elevation",
+    "named": false
+  },
+  {
+    "type": "enable_tile_shuffling",
+    "named": false
+  },
+  {
+    "type": "enable_waves",
+    "named": false
+  },
+  {
+    "type": "find_closest",
+    "named": false
+  },
+  {
+    "type": "find_closest_to_map_center",
+    "named": false
+  },
+  {
+    "type": "find_closest_to_map_edge",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": true
+  },
+  {
+    "type": "force_nomad_treaty",
+    "named": false
+  },
+  {
+    "type": "force_placement",
+    "named": false
+  },
+  {
+    "type": "generate_for_first_land_only",
+    "named": false
+  },
+  {
+    "type": "generate_mode",
+    "named": false
+  },
+  {
+    "type": "group_placement_radius",
+    "named": false
+  },
+  {
+    "type": "group_variance",
+    "named": false
+  },
+  {
+    "type": "grouped_by_team",
+    "named": false
+  },
+  {
+    "type": "guard_state",
+    "named": false
+  },
+  {
+    "type": "height_limits",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
+    "type": "ignore_terrain_restrictions",
+    "named": false
+  },
+  {
     "type": "integer",
     "named": true
+  },
+  {
+    "type": "land_conformity",
+    "named": false
+  },
+  {
+    "type": "land_id",
+    "named": false
+  },
+  {
+    "type": "land_percent",
+    "named": false
+  },
+  {
+    "type": "land_position",
+    "named": false
+  },
+  {
+    "type": "layer_to_place_on",
+    "named": false
+  },
+  {
+    "type": "left_border",
+    "named": false
+  },
+  {
+    "type": "make_indestructible",
+    "named": false
+  },
+  {
+    "type": "match_player_civ",
+    "named": false
+  },
+  {
+    "type": "max_distance_to_other_zones",
+    "named": false
+  },
+  {
+    "type": "max_distance_to_players",
+    "named": false
+  },
+  {
+    "type": "max_length_of_cliff",
+    "named": false
+  },
+  {
+    "type": "max_number_of_cliffs",
+    "named": false
+  },
+  {
+    "type": "min_connected_tiles",
+    "named": false
+  },
+  {
+    "type": "min_distance_cliffs",
+    "named": false
+  },
+  {
+    "type": "min_distance_group_placement",
+    "named": false
+  },
+  {
+    "type": "min_distance_to_map_edge",
+    "named": false
+  },
+  {
+    "type": "min_distance_to_players",
+    "named": false
+  },
+  {
+    "type": "min_length_of_cliff",
+    "named": false
+  },
+  {
+    "type": "min_number_of_cliffs",
+    "named": false
+  },
+  {
+    "type": "min_placement_distance",
+    "named": false
+  },
+  {
+    "type": "min_terrain_distance",
+    "named": false
+  },
+  {
+    "type": "nomad_resources",
+    "named": false
+  },
+  {
+    "type": "number_of_clumps",
+    "named": false
+  },
+  {
+    "type": "number_of_groups",
+    "named": false
+  },
+  {
+    "type": "number_of_objects",
+    "named": false
+  },
+  {
+    "type": "number_of_tiles",
+    "named": false
+  },
+  {
+    "type": "other_zone_avoidance_distance",
+    "named": false
+  },
+  {
+    "type": "override_actor_radius_if_required",
+    "named": false
+  },
+  {
+    "type": "override_map_size",
+    "named": false
+  },
+  {
+    "type": "place_on_forest_zone",
+    "named": false
+  },
+  {
+    "type": "place_on_specific_land_id",
+    "named": false
+  },
+  {
+    "type": "random_placement",
+    "named": false
+  },
+  {
+    "type": "replace_terrain",
+    "named": false
+  },
+  {
+    "type": "require_path",
+    "named": false
+  },
+  {
+    "type": "resource_delta",
+    "named": false
+  },
+  {
+    "type": "right_border",
+    "named": false
+  },
+  {
+    "type": "second_object",
+    "named": false
+  },
+  {
+    "type": "set_avoid_player_start_areas",
+    "named": false
+  },
+  {
+    "type": "set_building_capturable",
+    "named": false
+  },
+  {
+    "type": "set_circular_base",
+    "named": false
+  },
+  {
+    "type": "set_circular_placement",
+    "named": false
+  },
+  {
+    "type": "set_facet",
+    "named": false
+  },
+  {
+    "type": "set_flat_terrain_only",
+    "named": false
+  },
+  {
+    "type": "set_gaia_civilization",
+    "named": false
+  },
+  {
+    "type": "set_gaia_object_only",
+    "named": false
+  },
+  {
+    "type": "set_gaia_unconvertible",
+    "named": false
+  },
+  {
+    "type": "set_loose_grouping",
+    "named": false
+  },
+  {
+    "type": "set_place_for_every_player",
+    "named": false
+  },
+  {
+    "type": "set_scale_by_groups",
+    "named": false
+  },
+  {
+    "type": "set_scale_by_size",
+    "named": false
+  },
+  {
+    "type": "set_scaling_to_map_size",
+    "named": false
+  },
+  {
+    "type": "set_scaling_to_player_number",
+    "named": false
+  },
+  {
+    "type": "set_tight_grouping",
+    "named": false
+  },
+  {
+    "type": "set_zone_by_team",
+    "named": false
+  },
+  {
+    "type": "set_zone_randomly",
+    "named": false
+  },
+  {
+    "type": "spacing",
+    "named": false
+  },
+  {
+    "type": "spacing_to_other_terrain_types",
+    "named": false
+  },
+  {
+    "type": "spacing_to_specific_terrain",
+    "named": false
+  },
+  {
+    "type": "temp_min_distance_group_placement",
+    "named": false
+  },
+  {
+    "type": "terrain_cost",
+    "named": false
+  },
+  {
+    "type": "terrain_mask",
+    "named": false
+  },
+  {
+    "type": "terrain_size",
+    "named": false
+  },
+  {
+    "type": "terrain_state",
+    "named": false
+  },
+  {
+    "type": "terrain_to_place_on",
+    "named": false
+  },
+  {
+    "type": "terrain_type",
+    "named": false
+  },
+  {
+    "type": "top_border",
+    "named": false
+  },
+  {
+    "type": "water_definition",
+    "named": false
+  },
+  {
+    "type": "weather_type",
+    "named": false
+  },
+  {
+    "type": "zone",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]

@@ -1,0 +1,17 @@
+<OBJECTS_GENERATION>
+create_actor_area 0 0 1 0
+create_object_group HERD {
+  add_object SHEEP 50
+  add_object TURKEY 50
+}
+
+create_object TOWN_CENTER {
+  set_place_for_every_player
+  max_distance_to_players 0
+}
+
+create_object VILLAGER {
+  set_place_for_every_player
+  min_distance_to_players 6
+  max_distance_to_players 6
+}

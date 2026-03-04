@@ -1,0 +1,11 @@
+<LAND_GENERATION>
+base_terrain GRASS
+enable_waves 1
+
+create_player_lands {
+  terrain_type DIRT
+  number_of_tiles 0
+  base_size 9
+  set_circular_base
+  circle_radius 10 5
+}

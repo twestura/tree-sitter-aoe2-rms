@@ -1,0 +1,15 @@
+#const PHON 1543
+
+<PLAYER_SETUP>
+direct_placement
+behavior_version 2
+ai_info_map_type ARABIA 0 0 0
+override_map_size 36
+
+nomad_resources
+force_nomad_treaty
+
+#define TREATY_SETTINGS
+
+/* Sets Bird line of sight to 0. */
+effect_amount SET_ATTRIBUTE HAWK ATTR_LINE_OF_SIGHT 0
