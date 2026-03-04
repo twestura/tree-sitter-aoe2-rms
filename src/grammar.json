@@ -1319,8 +1319,21 @@
                   "value": "create_connect_same_land_zones"
                 },
                 {
-                  "type": "STRING",
-                  "value": "create_connect_land_zones"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "create_connect_land_zones"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_arg"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_arg"
+                    }
+                  ]
                 },
                 {
                   "type": "STRING",

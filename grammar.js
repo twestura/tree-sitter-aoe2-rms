@@ -205,7 +205,7 @@ export default grammar({
             "create_connect_teams_lands",
             "create_connect_all_lands",
             "create_connect_same_land_zones",
-            "create_connect_land_zones",
+            seq("create_connect_land_zones", $._arg, $._arg),
             "create_connect_to_nonplayer_land",
           ),
           "{",
