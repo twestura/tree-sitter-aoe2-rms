@@ -6,7 +6,7 @@
       "camelcase": "Aoe2Rms",
       "title": "Aoe2 Random Map Script",
       "scope": "source.aoe2-rms",
-      "file-types": ["rms"],
+      "file-types": ["rms", "rms2", "def", "inc", "bin"],
       "highlights": "queries/highlights.scm",
       "injection-regex": "^aoe2-rms$",
       "class-name": "TreeSitterAoe2Rms"
