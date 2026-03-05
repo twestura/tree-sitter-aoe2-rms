@@ -2,3 +2,4 @@
 #include_drs "path/to/a/map with spaces.rms"
 #includeXS extra.xs
 #includeXS "path/to/an/xs script with spaces.xs"
+#include_drs Baltic.rms 54203

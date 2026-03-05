@@ -2023,6 +2023,18 @@
         {
           "type": "SYMBOL",
           "name": "filepath"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "integer"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

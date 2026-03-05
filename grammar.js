@@ -303,7 +303,8 @@ export default grammar({
       ),
     define_statement: ($) => seq("#define", $.identifier),
     const_statement: ($) => seq("#const", $.identifier, $._arg),
-    include_drs: ($) => seq("#include_drs", $.filepath),
+    // Legacy maps (e.g. Blind Random) often include an SLP number after the filepath.
+    include_drs: ($) => seq("#include_drs", $.filepath, optional($.integer)),
     include_xs: ($) => seq("#includeXS", $.filepath),
 
     _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier, $.math_expr),
