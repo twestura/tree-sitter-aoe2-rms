@@ -1,0 +1,158 @@
+=============
+Basic Comment
+=============
+
+/* a comment */
+
+---
+
+(source_file
+  (comment))
+
+=============
+Empty Comment
+=============
+
+/**/
+
+---
+
+(source_file
+  (comment))
+
+====================
+Almost Empty Comment
+====================
+
+/***/
+
+---
+
+(source_file
+  (comment))
+
+====================
+Single Space Comment
+====================
+
+/* */
+
+---
+
+(source_file
+  (comment))
+
+=============================
+Single Level Single Character
+=============================
+
+/* a */
+
+---
+
+(source_file
+  (comment))
+
+
+=================
+Multiline Comment
+=================
+
+/* a comment
+   spanning
+   multiple lines */
+
+---
+
+(source_file
+  (comment))
+
+
+====================
+Comment After Define
+====================
+
+#define FOO /* a comment */
+
+---
+
+(source_file
+  (define_statement
+    (identifier))
+  (comment))
+
+=====================
+Comment Before Define
+=====================
+
+/* a comment */ #define FOO
+
+---
+
+(source_file
+  (comment)
+  (define_statement
+    (identifier)))
+
+=================
+Multiple Comments
+=================
+
+/* first */
+/* second */
+/* third */
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment))
+
+======================
+Comment Inside Section
+======================
+
+<LAND_GENERATION>
+
+/* a comment */
+
+---
+
+(source_file
+  (section
+    (land_generation))
+  (comment))
+
+=========================
+Star Inside Comment
+=========================
+
+/* * */
+
+---
+
+(source_file
+  (comment))
+
+==========================
+Double Star Inside Comment
+==========================
+
+/* ** */
+
+---
+
+(source_file
+  (comment))
+
+===========================
+Triple Star Inside Comment
+===========================
+
+/* *** */
+
+---
+
+(source_file
+  (comment))

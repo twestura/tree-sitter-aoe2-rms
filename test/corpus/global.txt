@@ -1,0 +1,123 @@
+======================
+Single Character Label
+======================
+
+#define A
+
+---
+
+(source_file
+  (define_statement
+    (identifier)))
+
+=====================
+Multi-Character Label
+=====================
+
+#define TEST_LABEL
+
+---
+
+(source_file
+  (define_statement
+    (identifier)))
+
+===============
+Multiple Labels
+===============
+
+#define A
+#define B
+#define C
+#define D #define E #define F
+
+---
+
+(source_file
+  (define_statement (identifier))
+  (define_statement (identifier))
+  (define_statement (identifier))
+  (define_statement (identifier))
+  (define_statement (identifier))
+  (define_statement (identifier)))
+
+================================
+Define Label With Leading Digits
+================================
+
+#define 123ABC
+
+---
+
+(source_file
+  (define_statement
+    (identifier)))
+
+======================
+Single Character Const
+======================
+#const A 1
+---
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+============================
+Const Statement With Integer
+============================
+
+#const MUD 76
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+===============================
+Const Statement With Identifier
+===============================
+
+#const HERDABLE_A SHEEP
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (identifier)))
+
+==========================
+Const Statement With Float
+==========================
+
+#const PI 3.14
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+=========================
+Const Statement With Math
+=========================
+
+#const TOTAL (1 + 2.3 * ARCHER + 4)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (float)
+      (math_operator)
+      (math_identifier)
+      (math_operator)
+      (integer))))

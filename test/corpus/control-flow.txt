@@ -1,0 +1,300 @@
+=========
+Basic If
+=========
+
+#define ZAR
+if ZAR
+  #define DOZ
+endif
+
+---
+
+(source_file
+  (define_statement
+    (identifier))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (endif_directive))
+
+=======
+If Else
+=======
+
+#define FOO
+if FOO
+  #define BAR
+else
+  #define BAZ
+endif
+
+---
+
+(source_file
+  (define_statement
+    (identifier))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (else_directive)
+  (define_statement
+    (identifier))
+  (endif_directive))
+
+=========
+If Elseif
+=========
+
+#define FOO
+if FOO
+  #define BAR
+elseif BAZ
+  #define ZAR
+endif
+
+---
+
+(source_file
+  (define_statement
+    (identifier))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (elseif_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (endif_directive))
+
+==============
+If Elseif Else
+==============
+
+#define FOO
+if FOO
+  #define BAR
+elseif BAZ
+  #define ZAR
+else
+  #define DOZ
+endif
+
+---
+
+(source_file
+  (define_statement
+    (identifier))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (elseif_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (else_directive)
+  (define_statement
+    (identifier))
+  (endif_directive))
+
+=========
+Nested If
+=========
+
+if FOO
+  if BAR
+    #define BAZ
+  endif
+endif
+
+---
+
+(source_file
+  (if_directive
+    (identifier))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (endif_directive)
+  (endif_directive))
+
+=================
+If Inside Section
+=================
+
+<LAND_GENERATION>
+if FOO
+  base_terrain GRASS
+endif
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (if_directive
+        (identifier))
+      (land_generation_command
+        (identifier))))
+  (endif_directive))
+
+=======================
+If Inside Command Block
+=======================
+
+<LAND_GENERATION>
+create_land {
+  if FOO
+    terrain_type GRASS
+  endif
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (if_directive
+          (identifier))
+        (create_land_attribute
+          (identifier))
+        (endif_directive)))))
+
+==================
+Basic Start Random
+==================
+
+start_random
+  percent_chance 100 #define ZARDOZ
+end_random
+
+---
+
+(source_file
+  (start_random_directive)
+  (percent_chance_directive
+    (integer))
+  (define_statement
+    (identifier))
+  (end_random_directive))
+
+==========================
+Start Random Multiple Arms
+==========================
+
+start_random
+  percent_chance 50 #define ZAR
+  percent_chance 50 #define DAZ
+end_random
+
+---
+
+(source_file
+  (start_random_directive)
+  (percent_chance_directive
+    (integer))
+  (define_statement
+    (identifier))
+  (percent_chance_directive
+    (integer))
+  (define_statement
+    (identifier))
+  (end_random_directive))
+
+===========================
+Start Random Inside Section
+===========================
+
+<LAND_GENERATION>
+start_random
+  percent_chance 100
+    base_terrain GRASS
+end_random
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (start_random_directive)
+      (percent_chance_directive
+        (integer))
+      (land_generation_command
+        (identifier))))
+  (end_random_directive))
+
+=================================
+Start Random Inside Command Block
+=================================
+
+<LAND_GENERATION>
+create_land {
+  start_random
+    percent_chance 100 terrain_type GRASS
+  end_random
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (start_random_directive)
+        (percent_chance_directive
+          (integer))
+        (create_land_attribute
+          (identifier))
+        (end_random_directive)))))
+
+======================
+If Inside Start Random
+======================
+
+start_random
+  percent_chance 100
+    if ZAR
+      #define DAZ
+    endif
+end_random
+
+---
+
+(source_file
+  (start_random_directive)
+  (percent_chance_directive
+    (integer))
+  (if_directive
+    (identifier))
+  (define_statement
+    (identifier))
+  (endif_directive)
+  (end_random_directive))
+
+======================
+Start Random Inside If
+======================
+
+if ZAR
+  start_random
+    percent_chance 100 #define DAZ
+  end_random
+endif
+
+---
+
+(source_file
+  (if_directive
+    (identifier))
+  (start_random_directive)
+  (percent_chance_directive
+    (integer))
+  (define_statement
+    (identifier))
+  (end_random_directive)
+  (endif_directive))

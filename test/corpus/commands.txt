@@ -1,0 +1,258 @@
+=================
+Player Setup Flag
+=================
+
+<PLAYER_SETUP>
+random_placement
+
+---
+
+(source_file
+  (section
+    (player_setup
+      (player_setup_command))))
+
+==============================
+Player Setup Command With Args
+==============================
+
+<PLAYER_SETUP>
+effect_amount SET_ATTRIBUTE MILITIA ATTR_ATTACK 2
+
+---
+
+(source_file
+  (section
+    (player_setup
+      (player_setup_command
+        (identifier)
+        (identifier)
+        (identifier)
+        (integer)))))
+
+==========================
+Land Generation Standalone
+==========================
+
+<LAND_GENERATION>
+base_terrain GRASS
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (identifier)))))
+
+=====================
+Land Generation Block
+=====================
+
+<LAND_GENERATION>
+create_land {
+  terrain_type GRASS
+  base_size 10
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (create_land_attribute
+          (identifier))
+        (create_land_attribute
+          (integer))))))
+
+==========================
+Elevation Generation Block
+==========================
+
+<ELEVATION_GENERATION>
+create_elevation 7 {
+  base_terrain GRASS
+  number_of_tiles 100
+}
+
+---
+
+(source_file
+  (section
+    (elevation_generation
+      (elevation_generation_command
+        (integer)
+        (create_elevation_attribute
+          (identifier))
+        (create_elevation_attribute
+          (integer))))))
+
+========================
+Cliff Generation Command
+========================
+
+<CLIFF_GENERATION>
+min_number_of_cliffs 2
+
+---
+
+(source_file
+  (section
+    (cliff_generation
+      (cliff_generation_command
+        (integer)))))
+
+========================
+Terrain Generation Block
+========================
+
+<TERRAIN_GENERATION>
+create_terrain GRASS {
+  base_terrain DIRT
+  number_of_clumps 10
+}
+
+---
+
+(source_file
+  (section
+    (terrain_generation
+      (terrain_generation_command
+        (identifier)
+        (create_terrain_attribute
+          (identifier))
+        (create_terrain_attribute
+          (integer))))))
+
+===========================
+Connection Generation Block
+===========================
+
+<CONNECTION_GENERATION>
+create_connect_all_players_land {
+  replace_terrain GRASS DIRT
+}
+
+---
+
+(source_file
+  (section
+    (connection_generation
+      (connection_generation_command
+        (create_connect_attribute
+          (identifier)
+          (identifier))))))
+
+========================
+Objects Generation Block
+========================
+
+<OBJECTS_GENERATION>
+create_object GOLD {
+  number_of_objects 4
+  min_distance_to_players 10
+}
+
+---
+
+(source_file
+  (section
+    (objects_generation
+      (objects_generation_command
+        (identifier)
+        (create_object_attribute
+          (integer))
+        (create_object_attribute
+          (integer))))))
+
+===========
+Empty Block
+===========
+
+<LAND_GENERATION>
+create_land {
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command))))
+
+============================
+Multiple Commands In Section
+============================
+
+<LAND_GENERATION>
+base_terrain GRASS
+base_layer DIRT
+enable_waves 1
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (identifier))
+      (land_generation_command
+        (identifier))
+      (land_generation_command
+        (integer)))))
+
+====================
+Command With Rnd Arg
+====================
+
+<LAND_GENERATION>
+create_land {
+  land_percent rnd(10,20)
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (create_land_attribute
+          (rnd
+            (integer)
+            (integer)))))))
+
+============================
+Command With Math Expression
+============================
+
+<LAND_GENERATION>
+create_land {
+  number_of_tiles (64 * MAPSCALE_SIDE)
+}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command
+        (create_land_attribute
+          (math_expr
+            (integer)
+            (math_operator)
+            (math_identifier)))))))
+
+=========================
+Empty Block No Whitespace
+=========================
+
+<LAND_GENERATION>
+create_land {}
+
+---
+
+(source_file
+  (section
+    (land_generation
+      (land_generation_command))))

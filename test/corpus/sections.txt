@@ -1,0 +1,205 @@
+====================
+Player Setup Section
+====================
+
+<PLAYER_SETUP>
+
+---
+
+(source_file
+  (section
+    (player_setup)))
+
+=======================
+Land Generation Section
+=======================
+
+<LAND_GENERATION>
+
+---
+
+(source_file
+  (section
+    (land_generation)))
+
+============================
+Elevation Generation Section
+============================
+
+<ELEVATION_GENERATION>
+
+---
+
+(source_file
+  (section
+    (elevation_generation)))
+
+========================
+Cliff Generation Section
+========================
+
+<CLIFF_GENERATION>
+
+---
+
+(source_file
+  (section
+    (cliff_generation)))
+
+==========================
+Terrain Generation Section
+==========================
+
+<TERRAIN_GENERATION>
+
+---
+
+(source_file
+  (section
+    (terrain_generation)))
+
+=============================
+Connection Generation Section
+=============================
+
+<CONNECTION_GENERATION>
+
+---
+
+(source_file
+  (section
+    (connection_generation)))
+
+==========================
+Objects Generation Section
+==========================
+
+<OBJECTS_GENERATION>
+
+---
+
+(source_file
+  (section
+    (objects_generation)))
+
+==================
+All Seven Sections
+==================
+
+<PLAYER_SETUP>
+<LAND_GENERATION>
+<ELEVATION_GENERATION>
+<CLIFF_GENERATION>
+<TERRAIN_GENERATION>
+<CONNECTION_GENERATION>
+<OBJECTS_GENERATION>
+
+---
+
+(source_file
+  (section (player_setup))
+  (section (land_generation))
+  (section (elevation_generation))
+  (section (cliff_generation))
+  (section (terrain_generation))
+  (section (connection_generation))
+  (section (objects_generation)))
+
+==================
+Duplicate Sections
+==================
+
+<LAND_GENERATION>
+<LAND_GENERATION>
+
+---
+
+(source_file
+  (section (land_generation))
+  (section (land_generation)))
+
+=====================
+Sections Out Of Order
+=====================
+
+<OBJECTS_GENERATION>
+<PLAYER_SETUP>
+<TERRAIN_GENERATION>
+<LAND_GENERATION>
+
+---
+
+(source_file
+  (section (objects_generation))
+  (section (player_setup))
+  (section (terrain_generation))
+  (section (land_generation)))
+
+
+=======================
+Many Duplicate Sections
+=======================
+
+<PLAYER_SETUP>
+<PLAYER_SETUP>
+<LAND_GENERATION>
+<LAND_GENERATION>
+<LAND_GENERATION>
+<ELEVATION_GENERATION>
+<CLIFF_GENERATION>
+<CLIFF_GENERATION>
+<TERRAIN_GENERATION>
+<CONNECTION_GENERATION>
+<OBJECTS_GENERATION>
+<OBJECTS_GENERATION>
+<OBJECTS_GENERATION>
+
+---
+
+(source_file
+  (section (player_setup))
+  (section (player_setup))
+  (section (land_generation))
+  (section (land_generation))
+  (section (land_generation))
+  (section (elevation_generation))
+  (section (cliff_generation))
+  (section (cliff_generation))
+  (section (terrain_generation))
+  (section (connection_generation))
+  (section (objects_generation))
+  (section (objects_generation))
+  (section (objects_generation)))
+
+==============================
+Interleaved Duplicate Sections
+==============================
+
+<PLAYER_SETUP>
+<LAND_GENERATION>
+<PLAYER_SETUP>
+<TERRAIN_GENERATION>
+<LAND_GENERATION>
+<OBJECTS_GENERATION>
+<CLIFF_GENERATION>
+<LAND_GENERATION>
+<ELEVATION_GENERATION>
+<OBJECTS_GENERATION>
+<CONNECTION_GENERATION>
+<PLAYER_SETUP>
+
+---
+
+(source_file
+  (section (player_setup))
+  (section (land_generation))
+  (section (player_setup))
+  (section (terrain_generation))
+  (section (land_generation))
+  (section (objects_generation))
+  (section (cliff_generation))
+  (section (land_generation))
+  (section (elevation_generation))
+  (section (objects_generation))
+  (section (connection_generation))
+  (section (player_setup)))

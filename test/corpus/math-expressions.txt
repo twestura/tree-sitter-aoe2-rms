@@ -1,0 +1,217 @@
+========
+Addition
+========
+
+#const RESULT (1 + 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+===========
+Subtraction
+===========
+
+#const RESULT (1 - 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+==============
+Multiplication
+==============
+
+#const RESULT (1 * 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+========
+Division
+========
+
+#const RESULT (1 / 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+=========
+Remainder
+=========
+
+#const RESULT (1 % 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+==============
+Single Operand
+==============
+
+#const RESULT (42)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer))))
+
+==============
+Float Operands
+==============
+
+#const RESULT (1.5 + 2.5)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (float)
+      (math_operator)
+      (float))))
+
+===================
+Identifier Operands
+===================
+
+#const RESULT (ZAR + DOZ)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (math_identifier)
+      (math_operator)
+      (math_identifier))))
+
+==============
+Mixed Operands
+==============
+
+#const RESULT (1 + 2.5 * FOO)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (float)
+      (math_operator)
+      (math_identifier))))
+
+==================
+Multiple Operators
+==================
+
+#const RESULT (1 + 2 - 3 * 4 / 5 % 6)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer)
+      (math_operator)
+      (integer)
+      (math_operator)
+      (integer)
+      (math_operator)
+      (integer)
+      (math_operator)
+      (integer))))
+
+========================
+Negative Integer Operand
+========================
+
+#const RESULT (-1 + 2)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (integer)
+      (math_operator)
+      (integer))))
+
+======================
+Negative Float Operand
+======================
+
+#const RESULT (-1.5 + 2.5)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (float)
+      (math_operator)
+      (float))))
+
+==================================
+Identifier Adjacent To Parentheses
+==================================
+
+#const RESULT (ZAR + 1 + DOZ)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (math_expr
+      (math_identifier)
+      (math_operator)
+      (integer)
+      (math_operator)
+      (math_identifier))))

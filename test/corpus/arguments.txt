@@ -1,0 +1,186 @@
+============
+Integer Zero
+============
+
+#const ZERO 0
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+================
+Positive Integer
+================
+
+#const POSITIVE 42
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+================
+Negative Integer
+================
+
+#const NEGATIVE -42
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+=========================
+Explicit Positive Integer
+=========================
+
+#const POSITIVE +42
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (integer)))
+
+===========
+Basic Float
+===========
+
+#const PI 3.14
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+==============
+Negative Float
+==============
+
+#const NEG -3.14
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+=======================
+Explicit Positive Float
+=======================
+
+#const POS +3.14
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+===================
+Float Less Than One
+===================
+
+#const SMALL .5
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+========
+Infinity
+========
+
+#const POS_INF inf
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+=================
+Negative Infinity
+=================
+
+#const NEG_INF -inf
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+==========================
+Explicit Positive Infinity
+==========================
+
+#const POS_INF +inf
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (float)))
+
+=========
+Basic rnd
+=========
+
+#const RANDOM_ANGLE rnd(0,359)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (rnd
+      (integer)
+      (integer))))
+
+
+========================
+Rnd With Negative Bounds
+========================
+
+#const RANDOM rnd(-10,-1)
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (rnd
+      (integer)
+      (integer))))
+
+===================
+Identifier Argument
+===================
+
+#const HERDABLE SHEEP
+
+---
+
+(source_file
+  (const_statement
+    (identifier)
+    (identifier)))

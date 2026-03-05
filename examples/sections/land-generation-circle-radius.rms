@@ -1,0 +1,4 @@
+<LAND_GENERATION>
+create_player_lands {
+  circle_radius rnd(30,45) 0
+}

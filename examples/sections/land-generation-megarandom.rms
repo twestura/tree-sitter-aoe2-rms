@@ -1,0 +1,66 @@
+<LAND_GENERATION>
+
+/* PH SEASONS */
+
+start_random
+  percent_chance 10 #define PH_SPRING
+  percent_chance 10 #define PH_ALPINE
+  percent_chance 10 #define PH_DESERT
+  percent_chance 10 #define PH_TROPHICALSOUTH
+  percent_chance 10 #define PH_TROPHICALEAST
+  percent_chance 5 #define PH_AFRICAN
+  percent_chance 5 #define PH_AFRICAN_E
+  percent_chance 10 #define PH_ASIAN
+  percent_chance 10 #define PH_AUTUMN
+  percent_chance 10 #define PH_FROZEN
+  percent_chance 10 #define PH_MEDISOUTH
+end_random
+
+
+#const FRESH_WATER 15
+#const ICY_SHORE 37
+
+#include_drs F_seasons.inc
+
+base_terrain LAYER_A
+
+create_player_lands
+{
+  terrain_type LAYER_A
+  land_percent rnd(12,46)
+  base_size 14
+
+	if NOMADIC_WAY
+
+  circle_radius rnd(30,45) 0
+
+	elseif MEGAORDER_NONEXTREME
+
+  circle_radius rnd(30,45) 0
+
+	else
+
+start_random
+percent_chance 20
+  circle_radius rnd(16,22) 0
+	#define MEGAORDER_LANDSVERYCLOSE
+	#define MEGAORDER_LIMITED_ROOM
+percent_chance 20
+  circle_radius rnd(23,29) 0
+	#define MEGAORDER_LANDSCLOSE
+	#define MEGAORDER_LIMITED_ROOM
+percent_chance 60
+  circle_radius rnd(30,45) 0
+	#define MEGAORDER_STANDARDLANDS
+end_random
+
+		if MEGAORDER_STANDARDLANDS
+
+base_elevation rnd(1,7)
+
+
+		endif
+
+
+	endif
+}

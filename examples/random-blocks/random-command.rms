@@ -1,0 +1,17 @@
+<LAND_GENERATION>
+create_player_lands {
+  else
+    start_random
+      percent_chance 20
+        circle_radius rnd(16,22) 0
+        /* #define MEGAORDER_LANDSVERYCLOSE */
+        /* #define MEGAORDER_LIMITED_ROOM */
+      percent_chance 60
+        circle_radius rnd(30,45) 0
+        #define MEGAORDER_STANDARDLANDS
+    end_random
+    if MEGAORDER_STANDARDLANDS
+      base_elevation rnd(1,7)
+    endif
+  endif
+}

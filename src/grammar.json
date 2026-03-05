@@ -3,23 +3,11 @@
   "name": "aoe2_rms",
   "rules": {
     "source_file": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_global_statement"
-          }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "section"
-          }
-        }
-      ]
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "section"
+      }
     },
     "section": {
       "type": "CHOICE",
@@ -64,17 +52,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "player_setup_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "player_setup_command"
           }
         }
       ]
@@ -312,17 +291,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "land_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "land_generation_command"
           }
         }
       ]
@@ -736,17 +706,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "elevation_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "elevation_generation_command"
           }
         }
       ]
@@ -871,17 +832,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "cliff_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "cliff_generation_command"
           }
         }
       ]
@@ -1005,17 +957,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "terrain_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "terrain_generation_command"
           }
         }
       ]
@@ -1274,17 +1217,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "connection_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "connection_generation_command"
           }
         }
       ]
@@ -1443,17 +1377,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "objects_generation_command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_global_statement"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "objects_generation_command"
           }
         }
       ]
@@ -2021,18 +1946,15 @@
           "value": "#include_drs"
         },
         {
-          "type": "SYMBOL",
-          "name": "filepath"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "integer"
+              "name": "string"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "filename"
             }
           ]
         }
@@ -2046,8 +1968,17 @@
           "value": "#includeXS"
         },
         {
-          "type": "SYMBOL",
-          "name": "filepath"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "filename"
+            }
+          ]
         }
       ]
     },
@@ -2163,7 +2094,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_math_operator"
+                "name": "math_operator"
               },
               {
                 "type": "SYMBOL",
@@ -2199,7 +2130,7 @@
       "type": "PATTERN",
       "value": "[^ \\t\\n\\r]*[^ \\t\\n\\r)]"
     },
-    "_math_operator": {
+    "math_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -2259,19 +2190,6 @@
         }
       ]
     },
-    "filepath": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "string"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "filename"
-        }
-      ]
-    },
     "string": {
       "type": "TOKEN",
       "content": {
@@ -2285,7 +2203,7 @@
     },
     "filename": {
       "type": "PATTERN",
-      "value": "[^ \\t\\n\\r]+"
+      "value": "[^ \\t\\n\\r\"][^ \\t\\n\\r]+"
     },
     "if_directive": {
       "type": "SEQ",
@@ -2343,67 +2261,24 @@
       "value": "end_random"
     },
     "comment": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "/*"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^*]"
-                },
-                {
-                  "type": "STRING",
-                  "value": "**"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "comment"
-                }
-              ]
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "comment"
-                  },
-                  {
-                    "type": "PATTERN",
-                    "value": "[^*]"
-                  },
-                  {
-                    "type": "PATTERN",
-                    "value": "\\*[^/]"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "*/"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "/**/"
-        },
-        {
-          "type": "STRING",
-          "value": "/***/"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+          },
+          {
+            "type": "STRING",
+            "value": "/"
+          }
+        ]
+      }
     }
   },
   "extras": [
@@ -2414,6 +2289,22 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "define_statement"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "const_statement"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "include_drs"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "include_xs"
     },
     {
       "type": "SYMBOL",

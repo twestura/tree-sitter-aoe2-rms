@@ -15,6 +15,10 @@ export default grammar({
   extras: ($) => [
     /[ \t\r\n]/,
     $.comment,
+    $.define_statement,
+    $.const_statement,
+    $.include_drs,
+    $.include_xs,
     $.if_directive,
     $.elseif_directive,
     $.else_directive,
@@ -26,14 +30,15 @@ export default grammar({
 
   // Note the grammar is limited in it's current highlighting of comments that
   // it incorrectly treats as comments sequences such as /*text*/ that do not
-  // separate the /* and */ sequences by whitespace.
+  // separate the /* and */ sequences by whitespace. And it does not support
+  // nested comments.
   //
   // RMS supports nested comments. The comment rule is inspired by the
   // specification of block comments in Rust:
   // https://doc.rust-lang.org/reference/comments.html
 
   rules: {
-    source_file: ($) => seq(repeat($._global_statement), repeat($.section)),
+    source_file: ($) => repeat($.section),
     section: ($) =>
       choice(
         $.player_setup,
@@ -45,11 +50,7 @@ export default grammar({
         $.objects_generation,
       ),
 
-    player_setup: ($) =>
-      seq(
-        "<PLAYER_SETUP>",
-        repeat(choice($.player_setup_command, $._global_statement)),
-      ),
+    player_setup: ($) => seq("<PLAYER_SETUP>", repeat($.player_setup_command)),
     player_setup_command: ($) =>
       choice(
         "random_placement",
@@ -70,10 +71,7 @@ export default grammar({
       ),
 
     land_generation: ($) =>
-      seq(
-        "<LAND_GENERATION>",
-        repeat(choice($.land_generation_command, $._global_statement)),
-      ),
+      seq("<LAND_GENERATION>", repeat($.land_generation_command)),
     land_generation_command: ($) =>
       choice(
         seq("base_terrain", $._arg),
@@ -115,10 +113,7 @@ export default grammar({
       ),
 
     elevation_generation: ($) =>
-      seq(
-        "<ELEVATION_GENERATION>",
-        repeat(choice($.elevation_generation_command, $._global_statement)),
-      ),
+      seq("<ELEVATION_GENERATION>", repeat($.elevation_generation_command)),
     elevation_generation_command: ($) =>
       seq(
         "create_elevation",
@@ -140,10 +135,7 @@ export default grammar({
       ),
 
     cliff_generation: ($) =>
-      seq(
-        "<CLIFF_GENERATION>",
-        repeat(choice($.cliff_generation_command, $._global_statement)),
-      ),
+      seq("<CLIFF_GENERATION>", repeat($.cliff_generation_command)),
     cliff_generation_command: ($) =>
       choice(
         seq("cliff_type", $._arg),
@@ -157,10 +149,7 @@ export default grammar({
       ),
 
     terrain_generation: ($) =>
-      seq(
-        "<TERRAIN_GENERATION>",
-        repeat(choice($.terrain_generation_command, $._global_statement)),
-      ),
+      seq("<TERRAIN_GENERATION>", repeat($.terrain_generation_command)),
     terrain_generation_command: ($) =>
       choice(
         seq("color_correction", $._arg),
@@ -192,10 +181,7 @@ export default grammar({
       ),
 
     connection_generation: ($) =>
-      seq(
-        "<CONNECTION_GENERATION>",
-        repeat(choice($.connection_generation_command, $._global_statement)),
-      ),
+      seq("<CONNECTION_GENERATION>", repeat($.connection_generation_command)),
     connection_generation_command: ($) =>
       choice(
         "accumulate_connections",
@@ -222,10 +208,7 @@ export default grammar({
       ),
 
     objects_generation: ($) =>
-      seq(
-        "<OBJECTS_GENERATION>",
-        repeat(choice($.objects_generation_command, $._global_statement)),
-      ),
+      seq("<OBJECTS_GENERATION>", repeat($.objects_generation_command)),
     objects_generation_command: ($) =>
       choice(
         seq("create_actor_area", $._arg, $._arg, $._arg, $._arg),
@@ -304,8 +287,8 @@ export default grammar({
     define_statement: ($) => seq("#define", $.identifier),
     const_statement: ($) => seq("#const", $.identifier, $._arg),
     // Legacy maps (e.g. Blind Random) often include an SLP number after the filepath.
-    include_drs: ($) => seq("#include_drs", $.filepath, optional($.integer)),
-    include_xs: ($) => seq("#includeXS", $.filepath),
+    include_drs: ($) => seq("#include_drs", choice($.string, $.filename)),
+    include_xs: ($) => seq("#includeXS", choice($.string, $.filename)),
 
     _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier, $.math_expr),
     integer: ($) => token(prec(1, /[+-]?[0-9]+/)),
@@ -316,12 +299,12 @@ export default grammar({
       seq(
         token(prec(1, "(")),
         $._math_operand,
-        repeat(seq($._math_operator, $._math_operand)),
+        repeat(seq($.math_operator, $._math_operand)),
         ")",
       ),
     _math_operand: ($) => choice($.integer, $.float, $.math_identifier),
     math_identifier: ($) => /[^ \t\n\r]*[^ \t\n\r)]/, // Cannot end with a parenthesis.
-    _math_operator: ($) =>
+    math_operator: ($) =>
       choice(
         token(prec(1, "+")),
         token(prec(1, "-")),
@@ -330,10 +313,9 @@ export default grammar({
         token(prec(1, "%")),
       ),
 
-    filepath: ($) => choice($.string, $.filename),
     // https://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes
     string: ($) => token(prec(1, /"(?:[^"\\]|\\.)*"/)),
-    filename: ($) => /[^ \t\n\r]+/,
+    filename: ($) => /[^ \t\n\r"][^ \t\n\r]+/,
 
     if_directive: ($) => seq("if", $.identifier),
     elseif_directive: ($) => seq("elseif", $.identifier),
@@ -344,16 +326,17 @@ export default grammar({
     percent_chance_directive: ($) => seq("percent_chance", $.integer),
     end_random_directive: ($) => "end_random",
 
-    comment: ($) =>
-      choice(
-        seq(
-          "/*",
-          choice(/[^*]/, "**", $.comment),
-          repeat(choice($.comment, /[^*]/, /\*[^/]/)),
-          "*/",
-        ),
-        "/**/",
-        "/***/",
-      ),
+    comment: ($) => token(seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
+    // comment: ($) =>
+    //   choice(
+    //     seq(
+    //       token("/*"),
+    //       choice(/[^*]/, "**", $.comment),
+    //       repeat(choice($.comment, /[^*]/, /\*[^/]/)),
+    //       token("*/"),
+    //     ),
+    //     "/**/",
+    //     "/***/",
+    //   ),
   },
 });
