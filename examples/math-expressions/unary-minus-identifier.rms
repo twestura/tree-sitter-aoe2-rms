@@ -1,0 +1,3 @@
+/* Map scripts must use the second. */
+(-IDENTIFIER)
+(-1 * IDENTIFIER)

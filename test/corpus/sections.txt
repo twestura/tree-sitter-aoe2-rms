@@ -7,8 +7,7 @@ Player Setup Section
 ---
 
 (source_file
-  (section
-    (player_setup)))
+  (section_name))
 
 =======================
 Land Generation Section
@@ -19,8 +18,7 @@ Land Generation Section
 ---
 
 (source_file
-  (section
-    (land_generation)))
+  (section_name))
 
 ============================
 Elevation Generation Section
@@ -31,8 +29,7 @@ Elevation Generation Section
 ---
 
 (source_file
-  (section
-    (elevation_generation)))
+  (section_name))
 
 ========================
 Cliff Generation Section
@@ -43,8 +40,7 @@ Cliff Generation Section
 ---
 
 (source_file
-  (section
-    (cliff_generation)))
+  (section_name))
 
 ==========================
 Terrain Generation Section
@@ -55,8 +51,7 @@ Terrain Generation Section
 ---
 
 (source_file
-  (section
-    (terrain_generation)))
+  (section_name))
 
 =============================
 Connection Generation Section
@@ -67,8 +62,7 @@ Connection Generation Section
 ---
 
 (source_file
-  (section
-    (connection_generation)))
+  (section_name))
 
 ==========================
 Objects Generation Section
@@ -79,8 +73,7 @@ Objects Generation Section
 ---
 
 (source_file
-  (section
-    (objects_generation)))
+  (section_name))
 
 ==================
 All Seven Sections
@@ -97,13 +90,13 @@ All Seven Sections
 ---
 
 (source_file
-  (section (player_setup))
-  (section (land_generation))
-  (section (elevation_generation))
-  (section (cliff_generation))
-  (section (terrain_generation))
-  (section (connection_generation))
-  (section (objects_generation)))
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name))
 
 ==================
 Duplicate Sections
@@ -115,8 +108,8 @@ Duplicate Sections
 ---
 
 (source_file
-  (section (land_generation))
-  (section (land_generation)))
+  (section_name)
+  (section_name))
 
 =====================
 Sections Out Of Order
@@ -130,10 +123,10 @@ Sections Out Of Order
 ---
 
 (source_file
-  (section (objects_generation))
-  (section (player_setup))
-  (section (terrain_generation))
-  (section (land_generation)))
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name))
 
 
 =======================
@@ -157,19 +150,19 @@ Many Duplicate Sections
 ---
 
 (source_file
-  (section (player_setup))
-  (section (player_setup))
-  (section (land_generation))
-  (section (land_generation))
-  (section (land_generation))
-  (section (elevation_generation))
-  (section (cliff_generation))
-  (section (cliff_generation))
-  (section (terrain_generation))
-  (section (connection_generation))
-  (section (objects_generation))
-  (section (objects_generation))
-  (section (objects_generation)))
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name))
 
 ==============================
 Interleaved Duplicate Sections
@@ -191,15 +184,15 @@ Interleaved Duplicate Sections
 ---
 
 (source_file
-  (section (player_setup))
-  (section (land_generation))
-  (section (player_setup))
-  (section (terrain_generation))
-  (section (land_generation))
-  (section (objects_generation))
-  (section (cliff_generation))
-  (section (land_generation))
-  (section (elevation_generation))
-  (section (objects_generation))
-  (section (connection_generation))
-  (section (player_setup)))
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name)
+  (section_name))

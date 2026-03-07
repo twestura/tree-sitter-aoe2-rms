@@ -7,336 +7,238 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+// The grammar currently always highlights `base_terrain` and `base_layer` as
+// attributes. They are the names of both commands and of attributes and are
+// ambiguous without context.
+
+// Note the grammar is limited in it's current highlighting of comments that
+// it incorrectly treats as comments sequences such as /*text*/ that do not
+// separate the /* and */ sequences by whitespace. And it does not support
+// nested comments.
+//
+// RMS supports nested comments. The comment rule is inspired by the
+// specification of block comments in Rust:
+// https://doc.rust-lang.org/reference/comments.html
+//
+// comment: ($) =>
+//   choice(
+//     seq(
+//       token("/*"),
+//       choice(/[^*]/, "**", $.comment),
+//       repeat(choice($.comment, /[^*]/, /\*[^/]/)),
+//       token("*/"),
+//     ),
+//     "/**/",
+//     "/***/",
+//   ),
+// However, this rule seems not to work in Rust. And it appears that
+// nested comments may require writing a bit of C code to support.
+
+/// The names of RMS keywords for if statements and random blocks.
+const CONTROL_FLOW_KEYWORDS = [
+  "if",
+  "elseif",
+  "else",
+  "endif",
+  "start_random",
+  "percent_chance",
+  "end_random",
+];
+
+/// The names of the seven RMS sections, including the angle brackets.
+const SECTION_NAMES = [
+  "<PLAYER_SETUP>",
+  "<LAND_GENERATION>",
+  "<ELEVATION_GENERATION>",
+  "<CLIFF_GENERATION>",
+  "<TERRAIN_GENERATION>",
+  "<CONNECTION_GENERATION>",
+  "<OBJECTS_GENERATION>",
+];
+
+/** The names of RMS commands, not including `base_terrain` or `base_layer. */
+const COMMAND_NAMES = [
+  "random_placement",
+  "direct_placement",
+  "grouped_by_team",
+  "nomad_resources",
+  "force_nomad_treaty",
+  "behavior_version",
+  "override_map_size",
+  "set_gaia_civilization",
+  "ai_info_map_type",
+  "effect_amount",
+  "effect_percent",
+  "guard_state",
+  "terrain_state",
+  "weather_type",
+  "water_definition",
+  "enable_waves",
+  "create_player_lands",
+  "create_land",
+  "create_elevation",
+  "color_correction",
+  "create_terrain",
+  "cliff_type",
+  "min_number_of_cliffs",
+  "max_number_of_cliffs",
+  "min_length_of_cliff",
+  "max_length_of_cliff",
+  "cliff_curliness",
+  "min_distance_cliffs",
+  "min_terrain_distance",
+  "accumulate_connections",
+  "create_connect_all_players_land",
+  "create_connect_teams_lands",
+  "create_connect_all_lands",
+  "create_connect_same_land_zones",
+  "create_connect_land_zones",
+  "create_connect_to_nonplayer_land",
+  "create_actor_area",
+  "create_object_group",
+  "create_object",
+];
+
+/// The names of RMS attributes, not including `base_terrain` or `base_layer`.
+const ATTRIBUTE_NAMES = [
+  "terrain_type",
+  "land_percent",
+  "number_of_tiles",
+  "base_size",
+  "set_circular_base",
+  "generate_mode",
+  "land_position",
+  "circle_radius",
+  "left_border",
+  "right_border",
+  "top_border",
+  "bottom_border",
+  "border_fuzziness",
+  "clumping_factor",
+  "land_conformity",
+  "base_elevation",
+  "assign_to_player",
+  "assign_to",
+  "zone",
+  "set_zone_by_team",
+  "set_zone_randomly",
+  "other_zone_avoidance_distance",
+  "min_placement_distance",
+  "land_id",
+  "number_of_clumps",
+  "set_scale_by_size",
+  "set_scale_by_groups",
+  "spacing",
+  "enable_balanced_elevation",
+  "beach_terrain",
+  "terrain_mask",
+  "spacing_to_other_terrain_types",
+  "spacing_to_specific_terrain",
+  "set_flat_terrain_only",
+  "set_avoid_player_start_areas",
+  "height_limits",
+  "default_terrain_replacement",
+  "replace_terrain",
+  "terrain_cost",
+  "terrain_size",
+  "add_object",
+  "number_of_objects",
+  "number_of_groups",
+  "group_variance",
+  "group_placement_radius",
+  "set_tight_grouping",
+  "set_loose_grouping",
+  "min_connected_tiles",
+  "resource_delta",
+  "second_object",
+  "set_scaling_to_map_size",
+  "set_scaling_to_player_number",
+  "set_place_for_every_player",
+  "place_on_specific_land_id",
+  "avoid_other_land_zones",
+  "generate_for_first_land_only",
+  "set_gaia_object_only",
+  "set_gaia_unconvertible",
+  "set_building_capturable",
+  "make_indestructible",
+  "min_distance_to_players",
+  "max_distance_to_players",
+  "set_circular_placement",
+  "terrain_to_place_on",
+  "layer_to_place_on",
+  "ignore_terrain_restrictions",
+  "max_distance_to_other_zones",
+  "place_on_forest_zone",
+  "avoid_forest_zone",
+  "avoid_cliff_zone",
+  "min_distance_to_map_edge",
+  "min_distance_group_placement",
+  "temp_min_distance_group_placement",
+  "find_closest",
+  "find_closest_to_map_center",
+  "find_closest_to_map_edge",
+  "enable_tile_shuffling",
+  "require_path",
+  "force_placement",
+  "actor_area",
+  "actor_area_radius",
+  "override_actor_radius_if_required",
+  "actor_area_to_place_in",
+  "avoid_actor_area",
+  "avoid_all_actor_areas",
+  "set_facet",
+  "match_player_civ",
+];
+
+/** Operators that may appear in math expressions. */
+const OPERATOR = ["+", "-", "*", "/", "%"];
+
 export default grammar({
   name: "aoe2_rms",
 
-  // TODO check whether vertical tabs and form feeds count as whitespace
-  // Also apply the same change to the identifier
-  extras: ($) => [
-    /[ \t\r\n]/,
-    $.comment,
-    $.define_statement,
-    $.const_statement,
-    $.include_drs,
-    $.include_xs,
-    $.if_directive,
-    $.elseif_directive,
-    $.else_directive,
-    $.endif_directive,
-    $.start_random_directive,
-    $.percent_chance_directive,
-    $.end_random_directive,
-  ],
-
-  // Note the grammar is limited in it's current highlighting of comments that
-  // it incorrectly treats as comments sequences such as /*text*/ that do not
-  // separate the /* and */ sequences by whitespace. And it does not support
-  // nested comments.
-  //
-  // RMS supports nested comments. The comment rule is inspired by the
-  // specification of block comments in Rust:
-  // https://doc.rust-lang.org/reference/comments.html
+  extras: ($) => [/[ \t\r\n]/, $.comment],
 
   rules: {
-    source_file: ($) => repeat($.section),
-    section: ($) =>
-      choice(
-        $.player_setup,
-        $.land_generation,
-        $.elevation_generation,
-        $.cliff_generation,
-        $.terrain_generation,
-        $.connection_generation,
-        $.objects_generation,
-      ),
-
-    player_setup: ($) => seq("<PLAYER_SETUP>", repeat($.player_setup_command)),
-    player_setup_command: ($) =>
-      choice(
-        "random_placement",
-        "direct_placement",
-        "grouped_by_team",
-        "nomad_resources",
-        "force_nomad_treaty",
-        seq("behavior_version", $._arg),
-        seq("override_map_size", $._arg),
-        seq("set_gaia_civilization", $._arg),
-        seq("ai_info_map_type", $._arg, $._arg, $._arg),
-        seq("effect_amount", $._arg, $._arg, $._arg, $._arg),
-        seq("effect_percent", $._arg, $._arg, $._arg, $._arg),
-        seq("guard_state", $._arg, $._arg, $._arg, $._arg),
-        seq("terrain_state", $._arg, $._arg, $._arg, $._arg),
-        seq("weather_type", $._arg, $._arg, $._arg, $._arg),
-        seq("water_definition", $._arg),
-      ),
-
-    land_generation: ($) =>
-      seq("<LAND_GENERATION>", repeat($.land_generation_command)),
-    land_generation_command: ($) =>
-      choice(
-        seq("base_terrain", $._arg),
-        seq("base_layer", $._arg),
-        seq("enable_waves", $._arg),
-        seq(
-          choice("create_player_lands", "create_land", $.identifier),
+    source_file: ($) =>
+      repeat(
+        choice(
+          $.section_name,
+          $.keyword_control,
+          $.command_name,
+          $.attribute_name,
+          "base_terrain",
+          "base_layer",
+          "#const",
+          "#define",
+          seq("#include_drs", $.filepath),
+          seq("#includeXS", $.filepath),
           "{",
-          repeat($.create_land_attribute),
           "}",
-        ),
-      ),
-    create_land_attribute: ($) =>
-      choice(
-        seq("terrain_type", $._arg),
-        seq("land_percent", $._arg),
-        seq("number_of_tiles", $._arg),
-        seq("base_size", $._arg),
-        "set_circular_base",
-        seq("generate_mode", $._arg),
-        seq("land_position", $._arg, $._arg),
-        seq("circle_radius", $._arg, optional($._arg)),
-        seq("left_border", $._arg),
-        seq("right_border", $._arg),
-        seq("top_border", $._arg),
-        seq("bottom_border", $._arg),
-        seq("border_fuzziness", $._arg),
-        seq("clumping_factor", $._arg),
-        seq("land_conformity", $._arg),
-        seq("base_elevation", $._arg),
-        seq("assign_to_player", $._arg),
-        seq("assign_to", $._arg, $._arg, $._arg, $._arg),
-        seq("zone", $._arg),
-        "set_zone_by_team",
-        "set_zone_randomly",
-        seq("other_zone_avoidance_distance", $._arg),
-        seq("min_placement_distance", $._arg),
-        seq("land_id", $._arg),
-      ),
-
-    elevation_generation: ($) =>
-      seq("<ELEVATION_GENERATION>", repeat($.elevation_generation_command)),
-    elevation_generation_command: ($) =>
-      seq(
-        "create_elevation",
-        $._arg,
-        "{",
-        repeat($.create_elevation_attribute),
-        "}",
-      ),
-    create_elevation_attribute: ($) =>
-      choice(
-        seq("base_terrain", $._arg),
-        seq("base_layer", $._arg),
-        seq("number_of_tiles", $._arg),
-        seq("number_of_clumps", $._arg),
-        "set_scale_by_size",
-        "set_scale_by_groups",
-        seq("spacing", $._arg),
-        "enable_balanced_elevation",
-      ),
-
-    cliff_generation: ($) =>
-      seq("<CLIFF_GENERATION>", repeat($.cliff_generation_command)),
-    cliff_generation_command: ($) =>
-      choice(
-        seq("cliff_type", $._arg),
-        seq("min_number_of_cliffs", $._arg),
-        seq("max_number_of_cliffs", $._arg),
-        seq("min_length_of_cliff", $._arg),
-        seq("max_length_of_cliff", $._arg),
-        seq("cliff_curliness", $._arg),
-        seq("min_distance_cliffs", $._arg),
-        seq("min_terrain_distance", $._arg),
-      ),
-
-    terrain_generation: ($) =>
-      seq("<TERRAIN_GENERATION>", repeat($.terrain_generation_command)),
-    terrain_generation_command: ($) =>
-      choice(
-        seq("color_correction", $._arg),
-        seq(
-          "create_terrain",
-          $._arg,
-          "{",
-          repeat($.create_terrain_attribute),
-          "}",
-        ),
-      ),
-    create_terrain_attribute: ($) =>
-      choice(
-        seq("base_terrain", $._arg),
-        seq("base_layer", $._arg),
-        seq("beach_terrain", $._arg),
-        seq("terrain_mask", $._arg),
-        seq("spacing_to_other_terrain_types", $._arg),
-        seq("spacing_to_specific_terrain", $._arg, $._arg),
-        seq("set_flat_terrain_only", $._arg),
-        seq("land_percent", $._arg),
-        seq("number_of_tiles", $._arg),
-        seq("number_of_clumps", $._arg),
-        seq("clumping_factor", $._arg),
-        "set_scale_by_size",
-        "set_scale_by_groups",
-        seq("set_avoid_player_start_areas", optional($._arg)),
-        seq("height_limits", $._arg, $._arg),
-      ),
-
-    connection_generation: ($) =>
-      seq("<CONNECTION_GENERATION>", repeat($.connection_generation_command)),
-    connection_generation_command: ($) =>
-      choice(
-        "accumulate_connections",
-        seq(
-          choice(
-            "create_connect_all_players_land",
-            "create_connect_teams_lands",
-            "create_connect_all_lands",
-            "create_connect_same_land_zones",
-            seq("create_connect_land_zones", $._arg, $._arg),
-            "create_connect_to_nonplayer_land",
-          ),
-          "{",
-          repeat($.create_connect_attribute),
-          "}",
-        ),
-      ),
-    create_connect_attribute: ($) =>
-      choice(
-        seq("default_terrain_replacement", $._arg),
-        seq("replace_terrain", $._arg, $._arg),
-        seq("terrain_cost", $._arg, $._arg),
-        seq("terrain_size", $._arg, $._arg, $._arg),
-      ),
-
-    objects_generation: ($) =>
-      seq("<OBJECTS_GENERATION>", repeat($.objects_generation_command)),
-    objects_generation_command: ($) =>
-      choice(
-        seq("create_actor_area", $._arg, $._arg, $._arg, $._arg),
-        seq(
-          "create_object_group",
+          "(",
+          ")",
+          seq("rnd", "(", $.integer, ",", $.integer, ")"),
+          $.integer,
+          $.float,
           $.identifier,
-          "{",
-          repeat(seq("add_object", $._arg, $._arg)),
-          "}",
-        ),
-        seq(
-          "create_object",
-          $.identifier,
-          "{",
-          repeat($.create_object_attribute),
-          "}",
+          $.operator,
         ),
       ),
-    create_object_attribute: ($) =>
-      choice(
-        seq("number_of_objects", $._arg),
-        seq("number_of_groups", $._arg),
-        seq("group_variance", $._arg),
-        "group_placement_radius",
-        "set_tight_grouping",
-        "set_loose_grouping",
-        seq("min_connected_tiles", $._arg),
-        seq("resource_delta", $._arg),
-        seq("second_object", $._arg),
-        "set_scaling_to_map_size",
-        "set_scaling_to_player_number",
-        "set_place_for_every_player",
-        seq("place_on_specific_land_id", $._arg),
-        seq("avoid_other_land_zones", $._arg),
-        "generate_for_first_land_only",
-        "set_gaia_object_only",
-        "set_gaia_unconvertible",
-        "set_building_capturable",
-        "make_indestructible",
-        seq("min_distance_to_players", $._arg),
-        seq("max_distance_to_players", $._arg),
-        "set_circular_placement",
-        seq("terrain_to_place_on", $._arg),
-        seq("layer_to_place_on", $._arg),
-        "ignore_terrain_restrictions",
-        seq("max_distance_to_other_zones", $._arg),
-        "place_on_forest_zone",
-        seq("avoid_forest_zone", $._arg),
-        seq("avoid_cliff_zone", $._arg),
-        seq("min_distance_to_map_edge", $._arg),
-        seq("min_distance_group_placement", $._arg),
-        seq("temp_min_distance_group_placement", $._arg),
-        "find_closest",
-        "find_closest_to_map_center",
-        "find_closest_to_map_edge",
-        "enable_tile_shuffling",
-        seq("require_path", $._arg),
-        "force_placement",
-        seq("actor_area", $._arg),
-        seq("actor_area_radius", $._arg),
-        "override_actor_radius_if_required",
-        seq("actor_area_to_place_in", $._arg),
-        seq("avoid_actor_area", $._arg),
-        "avoid_all_actor_areas",
-        seq("set_facet", $._arg),
-        "match_player_civ",
-      ),
 
-    _global_statement: ($) =>
-      choice(
-        $.define_statement,
-        $.const_statement,
-        $.include_drs,
-        $.include_xs,
-      ),
-    define_statement: ($) => seq("#define", $.identifier),
-    const_statement: ($) => seq("#const", $.identifier, $._arg),
-    // Legacy maps (e.g. Blind Random) often include an SLP number after the filepath.
-    include_drs: ($) => seq("#include_drs", choice($.string, $.filename)),
-    include_xs: ($) => seq("#includeXS", choice($.string, $.filename)),
+    keyword_control: ($) => choice(...CONTROL_FLOW_KEYWORDS),
+    section_name: ($) => choice(...SECTION_NAMES),
+    command_name: ($) => choice(...COMMAND_NAMES),
+    attribute_name: ($) => choice(...ATTRIBUTE_NAMES),
+    operator: ($) => choice(...OPERATOR),
 
-    _arg: ($) => choice($.integer, $.float, $.rnd, $.identifier, $.math_expr),
-    integer: ($) => token(prec(1, /[+-]?[0-9]+/)),
-    float: ($) => token(prec(1, /[+-]?(inf|[0-9]*\.[0-9]+)/)),
-    identifier: ($) => /[^ \t\n\r]+/,
-    rnd: ($) => seq(token(prec(1, "rnd")), "(", $.integer, ",", $.integer, ")"),
-    math_expr: ($) =>
-      seq(
-        token(prec(1, "(")),
-        $._math_operand,
-        repeat(seq($.math_operator, $._math_operand)),
-        ")",
-      ),
-    _math_operand: ($) => choice($.integer, $.float, $.math_identifier),
-    math_identifier: ($) => /[^ \t\n\r]*[^ \t\n\r)]/, // Cannot end with a parenthesis.
-    math_operator: ($) =>
-      choice(
-        token(prec(1, "+")),
-        token(prec(1, "-")),
-        token(prec(1, "*")),
-        token(prec(1, "/")),
-        token(prec(1, "%")),
-      ),
+    integer: ($) => /[+-]?[0-9]+/,
+    float: ($) => /[+-]?(inf|[0-9]*\.[0-9]+)/,
+    identifier: ($) => /[\p{L}\p{N}_-]+/u,
 
-    // https://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes
-    string: ($) => token(prec(1, /"(?:[^"\\]|\\.)*"/)),
-    filename: ($) => /[^ \t\n\r"][^ \t\n\r]+/,
-
-    if_directive: ($) => seq("if", $.identifier),
-    elseif_directive: ($) => seq("elseif", $.identifier),
-    else_directive: ($) => "else",
-    endif_directive: ($) => "endif",
-
-    start_random_directive: ($) => "start_random",
-    percent_chance_directive: ($) => seq("percent_chance", $.integer),
-    end_random_directive: ($) => "end_random",
+    filepath: ($) => choice($.string, $.filename),
+    string: ($) => seq('"', repeat(choice($.escape, /[^"\\]/)), '"'),
+    escape: ($) => /\\\S/,
+    filename: ($) => /[^"\s]\S*/,
 
     comment: ($) => token(seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
-    // comment: ($) =>
-    //   choice(
-    //     seq(
-    //       token("/*"),
-    //       choice(/[^*]/, "**", $.comment),
-    //       repeat(choice($.comment, /[^*]/, /\*[^/]/)),
-    //       token("*/"),
-    //     ),
-    //     "/**/",
-    //     "/***/",
-    //   ),
   },
 });

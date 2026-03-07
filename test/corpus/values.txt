@@ -7,9 +7,8 @@ Integer Zero
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 ================
 Positive Integer
@@ -20,9 +19,8 @@ Positive Integer
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 ================
 Negative Integer
@@ -33,9 +31,8 @@ Negative Integer
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 =========================
 Explicit Positive Integer
@@ -46,9 +43,8 @@ Explicit Positive Integer
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 ===========
 Basic Float
@@ -59,9 +55,8 @@ Basic Float
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 ==============
 Negative Float
@@ -72,9 +67,8 @@ Negative Float
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 =======================
 Explicit Positive Float
@@ -85,22 +79,20 @@ Explicit Positive Float
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
-===================
-Float Less Than One
-===================
+=====================
+Float No Leading Zero
+=====================
 
 #const SMALL .5
 
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 ========
 Infinity
@@ -111,9 +103,8 @@ Infinity
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 =================
 Negative Infinity
@@ -124,9 +115,8 @@ Negative Infinity
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 ==========================
 Explicit Positive Infinity
@@ -137,9 +127,8 @@ Explicit Positive Infinity
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 =========
 Basic rnd
@@ -150,11 +139,9 @@ Basic rnd
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (rnd
-      (integer)
-      (integer))))
+  (identifier)
+  (integer)
+  (integer))
 
 
 ========================
@@ -166,11 +153,9 @@ Rnd With Negative Bounds
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (rnd
-      (integer)
-      (integer))))
+  (identifier)
+  (integer)
+  (integer))
 
 ===================
 Identifier Argument
@@ -181,6 +166,5 @@ Identifier Argument
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (identifier)))
+  (identifier)
+  (identifier))

@@ -10,13 +10,11 @@ endif
 ---
 
 (source_file
-  (define_statement
-    (identifier))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (endif_directive))
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 =======
 If Else
@@ -32,16 +30,13 @@ endif
 ---
 
 (source_file
-  (define_statement
-    (identifier))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (else_directive)
-  (define_statement
-    (identifier))
-  (endif_directive))
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (keyword_control))
 
 =========
 If Elseif
@@ -57,17 +52,14 @@ endif
 ---
 
 (source_file
-  (define_statement
-    (identifier))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (elseif_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (endif_directive))
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 ==============
 If Elseif Else
@@ -85,20 +77,16 @@ endif
 ---
 
 (source_file
-  (define_statement
-    (identifier))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (elseif_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (else_directive)
-  (define_statement
-    (identifier))
-  (endif_directive))
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (keyword_control))
 
 =========
 Nested If
@@ -113,14 +101,13 @@ endif
 ---
 
 (source_file
-  (if_directive
-    (identifier))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (endif_directive)
-  (endif_directive))
+  (keyword_control)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (keyword_control))
 
 =================
 If Inside Section
@@ -134,13 +121,11 @@ endif
 ---
 
 (source_file
-  (section
-    (land_generation
-      (if_directive
-        (identifier))
-      (land_generation_command
-        (identifier))))
-  (endif_directive))
+  (section_name)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 =======================
 If Inside Command Block
@@ -156,14 +141,13 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (if_directive
-          (identifier))
-        (create_land_attribute
-          (identifier))
-        (endif_directive)))))
+  (section_name)
+  (command_name)
+  (keyword_control)
+  (identifier)
+  (attribute_name)
+  (identifier)
+  (keyword_control))
 
 ==================
 Basic Start Random
@@ -176,12 +160,11 @@ end_random
 ---
 
 (source_file
-  (start_random_directive)
-  (percent_chance_directive
-    (integer))
-  (define_statement
-    (identifier))
-  (end_random_directive))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 ==========================
 Start Random Multiple Arms
@@ -195,16 +178,14 @@ end_random
 ---
 
 (source_file
-  (start_random_directive)
-  (percent_chance_directive
-    (integer))
-  (define_statement
-    (identifier))
-  (percent_chance_directive
-    (integer))
-  (define_statement
-    (identifier))
-  (end_random_directive))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 ===========================
 Start Random Inside Section
@@ -219,14 +200,12 @@ end_random
 ---
 
 (source_file
-  (section
-    (land_generation
-      (start_random_directive)
-      (percent_chance_directive
-        (integer))
-      (land_generation_command
-        (identifier))))
-  (end_random_directive))
+  (section_name)
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 =================================
 Start Random Inside Command Block
@@ -242,15 +221,14 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (start_random_directive)
-        (percent_chance_directive
-          (integer))
-        (create_land_attribute
-          (identifier))
-        (end_random_directive)))))
+  (section_name)
+  (command_name)
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (attribute_name)
+  (identifier)
+  (keyword_control))
 
 ======================
 If Inside Start Random
@@ -266,15 +244,14 @@ end_random
 ---
 
 (source_file
-  (start_random_directive)
-  (percent_chance_directive
-    (integer))
-  (if_directive
-    (identifier))
-  (define_statement
-    (identifier))
-  (endif_directive)
-  (end_random_directive))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (keyword_control))
 
 ======================
 Start Random Inside If
@@ -289,12 +266,11 @@ endif
 ---
 
 (source_file
-  (if_directive
-    (identifier))
-  (start_random_directive)
-  (percent_chance_directive
-    (integer))
-  (define_statement
-    (identifier))
-  (end_random_directive)
-  (endif_directive))
+  (keyword_control)
+  (identifier)
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control)
+  (keyword_control))

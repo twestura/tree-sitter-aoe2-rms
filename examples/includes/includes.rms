@@ -3,3 +3,6 @@
 #includeXS extra.xs
 #includeXS "path/to/an/xs script with spaces.xs"
 #include_drs Baltic.rms 54203
+#includeXS "path\\with spaces and\\escapes.xs"
+#includeXS filepath\\with\\escapes.xs
+#includeXS \\filepath\\starting\\with\\escapes.xs

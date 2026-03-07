@@ -7,12 +7,10 @@ Addition
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 ===========
 Subtraction
@@ -23,12 +21,10 @@ Subtraction
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 ==============
 Multiplication
@@ -39,12 +35,10 @@ Multiplication
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 ========
 Division
@@ -55,12 +49,10 @@ Division
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 =========
 Remainder
@@ -71,12 +63,10 @@ Remainder
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 ==============
 Single Operand
@@ -87,10 +77,8 @@ Single Operand
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer))))
+  (identifier)
+  (integer))
 
 ==============
 Float Operands
@@ -101,12 +89,10 @@ Float Operands
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (float)
-      (math_operator)
-      (float))))
+  (identifier)
+  (float)
+  (operator)
+  (float))
 
 ===================
 Identifier Operands
@@ -117,12 +103,10 @@ Identifier Operands
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (math_identifier)
-      (math_operator)
-      (math_identifier))))
+  (identifier)
+  (identifier)
+  (operator)
+  (identifier))
 
 ==============
 Mixed Operands
@@ -133,14 +117,12 @@ Mixed Operands
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (float)
-      (math_operator)
-      (math_identifier))))
+  (identifier)
+  (integer)
+  (operator)
+  (float)
+  (operator)
+  (identifier))
 
 ==================
 Multiple Operators
@@ -151,20 +133,18 @@ Multiple Operators
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer)
-      (math_operator)
-      (integer)
-      (math_operator)
-      (integer)
-      (math_operator)
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer)
+  (operator)
+  (integer)
+  (operator)
+  (integer)
+  (operator)
+  (integer)
+  (operator)
+  (integer))
 
 ========================
 Negative Integer Operand
@@ -175,12 +155,10 @@ Negative Integer Operand
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (integer))
 
 ======================
 Negative Float Operand
@@ -191,12 +169,10 @@ Negative Float Operand
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (float)
-      (math_operator)
-      (float))))
+  (identifier)
+  (float)
+  (operator)
+  (float))
 
 ==================================
 Identifier Adjacent To Parentheses
@@ -207,11 +183,9 @@ Identifier Adjacent To Parentheses
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (math_identifier)
-      (math_operator)
-      (integer)
-      (math_operator)
-      (math_identifier))))
+  (identifier)
+  (identifier)
+  (operator)
+  (integer)
+  (operator)
+  (identifier))

@@ -77,8 +77,7 @@ Comment After Define
 ---
 
 (source_file
-  (define_statement
-    (identifier))
+  (identifier)
   (comment))
 
 =====================
@@ -91,8 +90,7 @@ Comment Before Define
 
 (source_file
   (comment)
-  (define_statement
-    (identifier)))
+  (identifier))
 
 =================
 Multiple Comments
@@ -120,8 +118,7 @@ Comment Inside Section
 ---
 
 (source_file
-  (section
-    (land_generation))
+  (section_name)
   (comment))
 
 =========================

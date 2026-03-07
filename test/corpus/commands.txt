@@ -8,9 +8,8 @@ random_placement
 ---
 
 (source_file
-  (section
-    (player_setup
-      (player_setup_command))))
+  (section_name)
+  (command_name))
 
 ==============================
 Player Setup Command With Args
@@ -22,13 +21,12 @@ effect_amount SET_ATTRIBUTE MILITIA ATTR_ATTACK 2
 ---
 
 (source_file
-  (section
-    (player_setup
-      (player_setup_command
-        (identifier)
-        (identifier)
-        (identifier)
-        (integer)))))
+  (section_name)
+  (command_name)
+  (identifier)
+  (identifier)
+  (identifier)
+  (integer))
 
 ==========================
 Land Generation Standalone
@@ -40,10 +38,8 @@ base_terrain GRASS
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (identifier)))))
+  (section_name)
+  (identifier))
 
 =====================
 Land Generation Block
@@ -58,13 +54,12 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (create_land_attribute
-          (identifier))
-        (create_land_attribute
-          (integer))))))
+  (section_name)
+  (command_name)
+  (attribute_name)
+  (identifier)
+  (attribute_name)
+  (integer))
 
 ==========================
 Elevation Generation Block
@@ -79,14 +74,12 @@ create_elevation 7 {
 ---
 
 (source_file
-  (section
-    (elevation_generation
-      (elevation_generation_command
-        (integer)
-        (create_elevation_attribute
-          (identifier))
-        (create_elevation_attribute
-          (integer))))))
+  (section_name)
+  (command_name)
+  (integer)
+  (identifier)
+  (attribute_name)
+  (integer))
 
 ========================
 Cliff Generation Command
@@ -98,10 +91,9 @@ min_number_of_cliffs 2
 ---
 
 (source_file
-  (section
-    (cliff_generation
-      (cliff_generation_command
-        (integer)))))
+  (section_name)
+  (command_name)
+  (integer))
 
 ========================
 Terrain Generation Block
@@ -116,14 +108,12 @@ create_terrain GRASS {
 ---
 
 (source_file
-  (section
-    (terrain_generation
-      (terrain_generation_command
-        (identifier)
-        (create_terrain_attribute
-          (identifier))
-        (create_terrain_attribute
-          (integer))))))
+  (section_name)
+  (command_name)
+  (identifier)
+  (identifier)
+  (attribute_name)
+  (integer))
 
 ===========================
 Connection Generation Block
@@ -137,12 +127,11 @@ create_connect_all_players_land {
 ---
 
 (source_file
-  (section
-    (connection_generation
-      (connection_generation_command
-        (create_connect_attribute
-          (identifier)
-          (identifier))))))
+  (section_name)
+  (command_name)
+  (attribute_name)
+  (identifier)
+  (identifier))
 
 ========================
 Objects Generation Block
@@ -157,14 +146,13 @@ create_object GOLD {
 ---
 
 (source_file
-  (section
-    (objects_generation
-      (objects_generation_command
-        (identifier)
-        (create_object_attribute
-          (integer))
-        (create_object_attribute
-          (integer))))))
+  (section_name)
+  (command_name)
+  (identifier)
+  (attribute_name)
+  (integer)
+  (attribute_name)
+  (integer))
 
 ===========
 Empty Block
@@ -177,9 +165,8 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command))))
+  (section_name)
+  (command_name))
 
 ============================
 Multiple Commands In Section
@@ -193,14 +180,11 @@ enable_waves 1
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (identifier))
-      (land_generation_command
-        (identifier))
-      (land_generation_command
-        (integer)))))
+  (section_name)
+  (identifier)
+  (identifier)
+  (command_name)
+  (integer))
 
 ====================
 Command With Rnd Arg
@@ -214,13 +198,11 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (create_land_attribute
-          (rnd
-            (integer)
-            (integer)))))))
+  (section_name)
+  (command_name)
+  (attribute_name)
+  (integer)
+  (integer))
 
 ============================
 Command With Math Expression
@@ -234,14 +216,12 @@ create_land {
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command
-        (create_land_attribute
-          (math_expr
-            (integer)
-            (math_operator)
-            (math_identifier)))))))
+  (section_name)
+  (command_name)
+  (attribute_name)
+  (integer)
+  (operator)
+  (identifier))
 
 =========================
 Empty Block No Whitespace
@@ -253,6 +233,5 @@ create_land {}
 ---
 
 (source_file
-  (section
-    (land_generation
-      (land_generation_command))))
+  (section_name)
+  (command_name))

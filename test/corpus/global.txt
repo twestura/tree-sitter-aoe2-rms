@@ -7,8 +7,7 @@ Single Character Label
 ---
 
 (source_file
-  (define_statement
-    (identifier)))
+  (identifier))
 
 =====================
 Multi-Character Label
@@ -19,8 +18,7 @@ Multi-Character Label
 ---
 
 (source_file
-  (define_statement
-    (identifier)))
+  (identifier))
 
 ===============
 Multiple Labels
@@ -34,12 +32,12 @@ Multiple Labels
 ---
 
 (source_file
-  (define_statement (identifier))
-  (define_statement (identifier))
-  (define_statement (identifier))
-  (define_statement (identifier))
-  (define_statement (identifier))
-  (define_statement (identifier)))
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
 
 ================================
 Define Label With Leading Digits
@@ -50,8 +48,7 @@ Define Label With Leading Digits
 ---
 
 (source_file
-  (define_statement
-    (identifier)))
+  (identifier))
 
 ======================
 Single Character Const
@@ -59,9 +56,8 @@ Single Character Const
 #const A 1
 ---
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 ============================
 Const Statement With Integer
@@ -72,9 +68,8 @@ Const Statement With Integer
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (integer)))
+  (identifier)
+  (integer))
 
 ===============================
 Const Statement With Identifier
@@ -85,9 +80,8 @@ Const Statement With Identifier
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (identifier)))
+  (identifier)
+  (identifier))
 
 ==========================
 Const Statement With Float
@@ -98,9 +92,8 @@ Const Statement With Float
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (float)))
+  (identifier)
+  (float))
 
 =========================
 Const Statement With Math
@@ -111,13 +104,11 @@ Const Statement With Math
 ---
 
 (source_file
-  (const_statement
-    (identifier)
-    (math_expr
-      (integer)
-      (math_operator)
-      (float)
-      (math_operator)
-      (math_identifier)
-      (math_operator)
-      (integer))))
+  (identifier)
+  (integer)
+  (operator)
+  (float)
+  (operator)
+  (identifier)
+  (operator)
+  (integer))
