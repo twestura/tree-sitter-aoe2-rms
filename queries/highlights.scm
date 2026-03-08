@@ -3,7 +3,7 @@
 (comment) @comment
 
 (keyword_control) @keyword.control
-(section_name) @module
+(section_name) @tag
 (command_name) @function
 (attribute_name) @property
 
