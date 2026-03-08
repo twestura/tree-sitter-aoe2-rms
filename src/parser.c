@@ -17,10 +17,10 @@
 #define LANGUAGE_VERSION 15
 #define STATE_COUNT 24
 #define LARGE_STATE_COUNT 14
-#define SYMBOL_COUNT 176
+#define SYMBOL_COUNT 177
 #define ALIAS_COUNT 0
-#define TOKEN_COUNT 166
-#define EXTERNAL_TOKEN_COUNT 0
+#define TOKEN_COUNT 167
+#define EXTERNAL_TOKEN_COUNT 1
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 6
 #define MAX_RESERVED_WORD_SET_SIZE 0
@@ -193,16 +193,17 @@ enum ts_symbol_identifiers {
   sym_escape = 163,
   sym_filename = 164,
   sym_comment = 165,
-  sym_source_file = 166,
-  sym_keyword_control = 167,
-  sym_section_name = 168,
-  sym_command_name = 169,
-  sym_attribute_name = 170,
-  sym_operator = 171,
-  sym_filepath = 172,
-  sym_string = 173,
-  aux_sym_source_file_repeat1 = 174,
-  aux_sym_string_repeat1 = 175,
+  sym_error_sentinel = 166,
+  sym_source_file = 167,
+  sym_keyword_control = 168,
+  sym_section_name = 169,
+  sym_command_name = 170,
+  sym_attribute_name = 171,
+  sym_operator = 172,
+  sym_filepath = 173,
+  sym_string = 174,
+  aux_sym_source_file_repeat1 = 175,
+  aux_sym_string_repeat1 = 176,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -372,6 +373,7 @@ static const char * const ts_symbol_names[] = {
   [sym_escape] = "escape",
   [sym_filename] = "filename",
   [sym_comment] = "comment",
+  [sym_error_sentinel] = "error_sentinel",
   [sym_source_file] = "source_file",
   [sym_keyword_control] = "keyword_control",
   [sym_section_name] = "section_name",
@@ -551,6 +553,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_escape] = sym_escape,
   [sym_filename] = sym_filename,
   [sym_comment] = sym_comment,
+  [sym_error_sentinel] = sym_error_sentinel,
   [sym_source_file] = sym_source_file,
   [sym_keyword_control] = sym_keyword_control,
   [sym_section_name] = sym_section_name,
@@ -1225,6 +1228,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .named = true,
   },
   [sym_comment] = {
+    .visible = true,
+    .named = true,
+  },
+  [sym_error_sentinel] = {
     .visible = true,
     .named = true,
   },
@@ -10459,7 +10466,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
 }
 
 static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
-  [0] = {.lex_state = 0},
+  [0] = {.lex_state = 0, .external_lex_state = 1},
   [1] = {.lex_state = 0},
   [2] = {.lex_state = 0},
   [3] = {.lex_state = 0},
@@ -10651,6 +10658,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_DQUOTE] = ACTIONS(1),
     [sym_escape] = ACTIONS(1),
     [sym_comment] = ACTIONS(3),
+    [sym_error_sentinel] = ACTIONS(1),
   },
   [STATE(1)] = {
     [sym_source_file] = STATE(19),
@@ -12944,9 +12952,29 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [132] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
 };
 
+enum ts_external_scanner_symbol_identifiers {
+  ts_external_token_error_sentinel = 0,
+};
+
+static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
+  [ts_external_token_error_sentinel] = sym_error_sentinel,
+};
+
+static const bool ts_external_scanner_states[2][EXTERNAL_TOKEN_COUNT] = {
+  [1] = {
+    [ts_external_token_error_sentinel] = true,
+  },
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+void *tree_sitter_aoe2_rms_external_scanner_create(void);
+void tree_sitter_aoe2_rms_external_scanner_destroy(void *);
+bool tree_sitter_aoe2_rms_external_scanner_scan(void *, TSLexer *, const bool *);
+unsigned tree_sitter_aoe2_rms_external_scanner_serialize(void *, char *);
+void tree_sitter_aoe2_rms_external_scanner_deserialize(void *, const char *, unsigned);
+
 #ifdef TREE_SITTER_HIDE_SYMBOLS
 #define TS_PUBLIC
 #elif defined(_WIN32)
@@ -12979,6 +13007,15 @@ TS_PUBLIC const TSLanguage *tree_sitter_aoe2_rms(void) {
     .alias_sequences = &ts_alias_sequences[0][0],
     .lex_modes = (const void*)ts_lex_modes,
     .lex_fn = ts_lex,
+    .external_scanner = {
+      &ts_external_scanner_states[0][0],
+      ts_external_scanner_symbol_map,
+      tree_sitter_aoe2_rms_external_scanner_create,
+      tree_sitter_aoe2_rms_external_scanner_destroy,
+      tree_sitter_aoe2_rms_external_scanner_scan,
+      tree_sitter_aoe2_rms_external_scanner_serialize,
+      tree_sitter_aoe2_rms_external_scanner_deserialize,
+    },
     .primary_state_ids = ts_primary_state_ids,
     .name = "aoe2_rms",
     .max_reserved_word_set_size = 0,

@@ -195,9 +195,8 @@ const OPERATOR = ["+", "-", "*", "/", "%"];
 
 export default grammar({
   name: "aoe2_rms",
-
+  externals: ($) => [$.error_sentinel],
   extras: ($) => [/[ \t\r\n]/, $.comment],
-
   rules: {
     source_file: ($) =>
       repeat(
