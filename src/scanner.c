@@ -1,7 +1,5 @@
 #include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
-#include <stdio.h>
-// TODO clean inputs.
 
 /// Type of tokens produced by the scanner.
 enum TokenType {
@@ -99,7 +97,6 @@ bool handle_block_comment(TSLexer * lexer) {
     int depth = 1;
     enum CommentState state = WHITESPACE;
     for (;;) {
-        // fprintf(stderr, "char: %c, state: %d\n", lexer->lookahead, state);
         if (lexer->eof(lexer)) {
             lexer->result_symbol = COMMENT;
             return true; // Comment reaches eof.
@@ -149,14 +146,6 @@ bool handle_block_comment(TSLexer * lexer) {
 bool tree_sitter_aoe2_rms_external_scanner_scan(
     void *scanner, TSLexer *lexer, const bool *valid_symbols
 ) {
-    // fprintf(
-    //     stderr,
-    //     "[%i, %i, %i, %i, %i, %i, %i, %i]\n",
-    //     valid_symbols[LBRACE], valid_symbols[RBRACE],
-    //     valid_symbols[BASE_TERRAIN_CMD], valid_symbols[BASE_TERRAIN_ATTR],
-    //     valid_symbols[BASE_LAYER_CMD], valid_symbols[BASE_LAYER_ATTR],
-    //     valid_symbols[COMMENT], valid_symbols[ERROR_SENTINEL]
-    // );
     if (valid_symbols[ERROR_SENTINEL]) return false;
     Scanner * s = (Scanner *) scanner;
     while (is_whitespace(lexer->lookahead)) lexer->advance(lexer, true);
