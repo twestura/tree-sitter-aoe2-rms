@@ -7,10 +7,10 @@
 (command_name) @function
 (attribute_name) @property
 
-[
-  "base_terrain"
-  "base_layer"
-] @property
+(base_terrain_command) @function
+(base_terrain_attribute) @property
+(base_layer_command) @function
+(base_layer_attribute) @property
 
 "rnd" @function
 

@@ -195,7 +195,15 @@ const OPERATORS = ["+", "-", "*", "/", "%"];
 
 export default grammar({
   name: "aoe2_rms",
-  externals: ($) => [$.error_sentinel],
+  externals: ($) => [
+    "{",
+    "}",
+    $.base_terrain_command,
+    $.base_terrain_attribute,
+    $.base_layer_command,
+    $.base_layer_attribute,
+    $._error_sentinel,
+  ],
   extras: ($) => [/\s/, $.comment],
   rules: {
     source_file: ($) =>
@@ -205,8 +213,10 @@ export default grammar({
           $.keyword_control,
           $.command_name,
           $.attribute_name,
-          "base_terrain",
-          "base_layer",
+          $.base_terrain_command,
+          $.base_terrain_attribute,
+          $.base_layer_command,
+          $.base_layer_attribute,
           "#const",
           "#define",
           seq("#include_drs", $.filepath),

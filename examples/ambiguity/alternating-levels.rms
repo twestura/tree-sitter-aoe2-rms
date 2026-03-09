@@ -1,0 +1,10 @@
+base_layer base_terrain
+
+
+<LAND_GENERATION>
+base_terrain DESERT
+base_layer GRASS
+
+{ base_terrain base_layer { base_terrain base_layer
+
+} base_terrain base_layer

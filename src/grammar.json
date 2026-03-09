@@ -24,12 +24,20 @@
             "name": "attribute_name"
           },
           {
-            "type": "STRING",
-            "value": "base_terrain"
+            "type": "SYMBOL",
+            "name": "base_terrain_command"
           },
           {
-            "type": "STRING",
-            "value": "base_layer"
+            "type": "SYMBOL",
+            "name": "base_terrain_attribute"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "base_layer_command"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "base_layer_attribute"
           },
           {
             "type": "STRING",
@@ -832,8 +840,32 @@
   "precedences": [],
   "externals": [
     {
+      "type": "STRING",
+      "value": "{"
+    },
+    {
+      "type": "STRING",
+      "value": "}"
+    },
+    {
       "type": "SYMBOL",
-      "name": "error_sentinel"
+      "name": "base_terrain_command"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "base_terrain_attribute"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "base_layer_command"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "base_layer_attribute"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_error_sentinel"
     }
   ],
   "inline": [],

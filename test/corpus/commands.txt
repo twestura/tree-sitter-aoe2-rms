@@ -39,6 +39,7 @@ base_terrain GRASS
 
 (source_file
   (section_name)
+  (base_terrain_command)
   (identifier))
 
 =====================
@@ -77,6 +78,7 @@ create_elevation 7 {
   (section_name)
   (command_name)
   (integer)
+  (base_terrain_attribute)
   (identifier)
   (attribute_name)
   (integer))
@@ -111,6 +113,7 @@ create_terrain GRASS {
   (section_name)
   (command_name)
   (identifier)
+  (base_terrain_attribute)
   (identifier)
   (attribute_name)
   (integer))
@@ -181,7 +184,9 @@ enable_waves 1
 
 (source_file
   (section_name)
+  (base_terrain_command)
   (identifier)
+  (base_layer_command)
   (identifier)
   (command_name)
   (integer))

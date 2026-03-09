@@ -124,6 +124,7 @@ endif
   (section_name)
   (keyword_control)
   (identifier)
+  (base_terrain_command)
   (identifier)
   (keyword_control))
 
@@ -204,6 +205,7 @@ end_random
   (keyword_control)
   (keyword_control)
   (integer)
+  (base_terrain_command)
   (identifier)
   (keyword_control))
 

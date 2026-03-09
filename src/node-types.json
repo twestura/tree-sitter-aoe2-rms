@@ -57,6 +57,22 @@
           "named": true
         },
         {
+          "type": "base_layer_attribute",
+          "named": true
+        },
+        {
+          "type": "base_layer_command",
+          "named": true
+        },
+        {
+          "type": "base_terrain_attribute",
+          "named": true
+        },
+        {
+          "type": "base_terrain_command",
+          "named": true
+        },
+        {
           "type": "command_name",
           "named": true
         },
@@ -243,16 +259,24 @@
     "named": false
   },
   {
-    "type": "base_layer",
-    "named": false
+    "type": "base_layer_attribute",
+    "named": true
+  },
+  {
+    "type": "base_layer_command",
+    "named": true
   },
   {
     "type": "base_size",
     "named": false
   },
   {
-    "type": "base_terrain",
-    "named": false
+    "type": "base_terrain_attribute",
+    "named": true
+  },
+  {
+    "type": "base_terrain_command",
+    "named": true
   },
   {
     "type": "beach_terrain",
