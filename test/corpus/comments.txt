@@ -18,7 +18,7 @@ Empty Comment
 ---
 
 (source_file
-  (comment))
+  (identifier))
 
 ====================
 Almost Empty Comment
@@ -29,7 +29,7 @@ Almost Empty Comment
 ---
 
 (source_file
-  (comment))
+  (identifier))
 
 ====================
 Single Space Comment
@@ -121,9 +121,9 @@ Comment Inside Section
   (section_name)
   (comment))
 
-=========================
+===================
 Star Inside Comment
-=========================
+===================
 
 /* * */
 
@@ -143,9 +143,9 @@ Double Star Inside Comment
 (source_file
   (comment))
 
-===========================
+==========================
 Triple Star Inside Comment
-===========================
+==========================
 
 /* *** */
 
@@ -153,3 +153,87 @@ Triple Star Inside Comment
 
 (source_file
   (comment))
+
+==============
+Comment to EoF
+==============
+
+/* This comment is not closed
+
+---
+
+(source_file
+  (comment))
+
+=========================
+Comment Immediately Ended
+=========================
+
+/*
+
+---
+
+(source_file
+  (comment))
+
+==============================
+No Whitespace to Start Comment
+==============================
+
+#const/* Comment doesn't start */
+
+---
+
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
+
+====================================
+Comment Delimiters Within Identifier
+====================================
+
+this/*isnota*/comment
+
+---
+
+(source_file
+  (identifier))
+
+==============
+Nested Comment
+==============
+
+A /* B /* C */ D */ E
+
+---
+
+(source_file
+  (identifier)
+  (comment)
+  (identifier))
+
+==================
+Nested Comment EoF
+==================
+
+/* This /* Comment /* Runs */ to /* EoF
+
+---
+
+(source_file
+  (comment))
+
+===============================
+Whitespace Required For Nesting
+===============================
+
+/* A /*B */ C
+
+---
+
+(source_file
+  (comment)
+  (identifier))

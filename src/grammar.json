@@ -752,7 +752,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{L}\\p{N}_#$\\-]+",
+      "value": "[\\p{L}\\p{N}_'#$*/\\-]+",
       "flags": "u"
     },
     "filepath": {
@@ -804,26 +804,6 @@
     "filename": {
       "type": "PATTERN",
       "value": "[^\"\\s]\\S*"
-    },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "/*"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
-          },
-          {
-            "type": "STRING",
-            "value": "/"
-          }
-        ]
-      }
     }
   },
   "extras": [
@@ -862,6 +842,10 @@
     {
       "type": "SYMBOL",
       "name": "base_layer_attribute"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     },
     {
       "type": "SYMBOL",

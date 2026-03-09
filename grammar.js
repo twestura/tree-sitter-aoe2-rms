@@ -202,6 +202,7 @@ export default grammar({
     $.base_terrain_attribute,
     $.base_layer_command,
     $.base_layer_attribute,
+    $.comment,
     $._error_sentinel,
   ],
   extras: ($) => [/\s/, $.comment],
@@ -241,13 +242,11 @@ export default grammar({
 
     integer: ($) => /[+-]?[0-9]+/,
     float: ($) => /[+-]?(inf|[0-9]*\.[0-9]+)/,
-    identifier: ($) => /[\p{L}\p{N}_#$\-]+/u,
+    identifier: ($) => /[\p{L}\p{N}_'#$*/\-]+/u,
 
     filepath: ($) => choice($.string, $.filename),
     string: ($) => seq('"', repeat(choice($.escape, /[^"\\]/)), '"'),
     escape: ($) => /\\\S/,
     filename: ($) => /[^"\s]\S*/,
-
-    comment: ($) => token(seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
   },
 });
