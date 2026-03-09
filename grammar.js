@@ -191,12 +191,12 @@ const ATTRIBUTE_NAMES = [
 ];
 
 /** Operators that may appear in math expressions. */
-const OPERATOR = ["+", "-", "*", "/", "%"];
+const OPERATORS = ["+", "-", "*", "/", "%"];
 
 export default grammar({
   name: "aoe2_rms",
   externals: ($) => [$.error_sentinel],
-  extras: ($) => [/[ \t\r\n]/, $.comment],
+  extras: ($) => [/\s/, $.comment],
   rules: {
     source_file: ($) =>
       repeat(
@@ -218,8 +218,8 @@ export default grammar({
           seq("rnd", "(", $.integer, ",", $.integer, ")"),
           $.integer,
           $.float,
-          $.identifier,
           $.operator,
+          $.identifier,
         ),
       ),
 
@@ -227,11 +227,11 @@ export default grammar({
     section_name: ($) => choice(...SECTION_NAMES),
     command_name: ($) => choice(...COMMAND_NAMES),
     attribute_name: ($) => choice(...ATTRIBUTE_NAMES),
-    operator: ($) => choice(...OPERATOR),
+    operator: ($) => choice(...OPERATORS),
 
     integer: ($) => /[+-]?[0-9]+/,
     float: ($) => /[+-]?(inf|[0-9]*\.[0-9]+)/,
-    identifier: ($) => /[\p{L}\p{N}_-]+/u,
+    identifier: ($) => /[\p{L}\p{N}_#$\-]+/u,
 
     filepath: ($) => choice($.string, $.filename),
     string: ($) => seq('"', repeat(choice($.escape, /[^"\\]/)), '"'),

@@ -1,0 +1,65 @@
+==============
+Leading Number
+==============
+
+#define 2_PLAYER_GAME
+
+---
+
+(source_file
+  (identifier))
+
+======================
+Control Keyword Prefix
+======================
+
+#define ifs
+
+---
+
+(source_file
+  (identifier))
+
+
+=====================
+Define Keyword Prefix
+=====================
+
+#define #defined
+
+---
+
+(source_file
+  (identifier))
+
+===========
+Dollar Sign
+===========
+
+#define $5
+
+---
+
+(source_file
+  (identifier))
+
+=======
+Hyphens
+=======
+
+#define 555-555-5555
+
+---
+
+(source_file
+  (identifier))
+
+=========================
+Keyword Is Not Identifier
+=========================
+
+#define #define
+
+---
+
+(source_file)

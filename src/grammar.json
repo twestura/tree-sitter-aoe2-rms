@@ -120,11 +120,11 @@
           },
           {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "operator"
           },
           {
             "type": "SYMBOL",
-            "name": "operator"
+            "name": "identifier"
           }
         ]
       }
@@ -744,7 +744,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{L}\\p{N}_-]+",
+      "value": "[\\p{L}\\p{N}_#$\\-]+",
       "flags": "u"
     },
     "filepath": {
@@ -821,7 +821,7 @@
   "extras": [
     {
       "type": "PATTERN",
-      "value": "[ \\t\\r\\n]"
+      "value": "\\s"
     },
     {
       "type": "SYMBOL",
