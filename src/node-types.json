@@ -65,6 +65,116 @@
     "fields": {}
   },
   {
+    "type": "else_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "random_block",
+          "named": true
+        },
+        {
+          "type": "section_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elseif_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "random_block",
+          "named": true
+        },
+        {
+          "type": "section_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "filepath",
     "named": true,
     "fields": {},
@@ -85,6 +195,29 @@
   },
   {
     "type": "if_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else_clause",
+          "named": true
+        },
+        {
+          "type": "elseif_clause",
+          "named": true
+        },
+        {
+          "type": "if_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_clause",
     "named": true,
     "fields": {},
     "children": {
@@ -144,7 +277,7 @@
     "fields": {}
   },
   {
-    "type": "random_block",
+    "type": "percent_chance_clause",
     "named": true,
     "fields": {},
     "children": {
@@ -193,6 +326,21 @@
         },
         {
           "type": "section_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "random_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "percent_chance_clause",
           "named": true
         }
       ]
