@@ -12,9 +12,8 @@ endif
 (source_file
   (identifier)
   (if_block
-    (if_clause
-      (identifier)
-      (identifier))))
+    (identifier)
+    (identifier)))
 
 =======
 If Else
@@ -32,11 +31,9 @@ endif
 (source_file
   (identifier)
   (if_block
-    (if_clause
-      (identifier)
-      (identifier))
-    (else_clause
-      (identifier))))
+    (identifier)
+    (identifier)
+    (identifier)))
 
 =========
 If Elseif
@@ -54,12 +51,10 @@ endif
 (source_file
   (identifier)
   (if_block
-    (if_clause
-      (identifier)
-      (identifier))
-    (elseif_clause
-      (identifier)
-      (identifier))))
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
 
 ==============
 If Elseif Else
@@ -79,14 +74,11 @@ endif
 (source_file
   (identifier)
   (if_block
-    (if_clause
-      (identifier)
-      (identifier))
-    (elseif_clause
-      (identifier)
-      (identifier))
-    (else_clause
-      (identifier))))
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
 
 =========
 Nested If
@@ -102,12 +94,10 @@ endif
 
 (source_file
   (if_block
-    (if_clause
+    (identifier)
+    (if_block
       (identifier)
-      (if_block
-        (if_clause
-          (identifier)
-          (identifier))))))
+      (identifier))))
 
 =================
 If Inside Section
@@ -123,9 +113,8 @@ endif
 (source_file
   (section_name)
   (if_block
-    (if_clause
-      (identifier)
-      (identifier))))
+    (identifier)
+    (identifier)))
 
 =======================
 If Inside Command Block
@@ -145,10 +134,9 @@ create_land {
   (command_name)
   (block
     (if_block
-      (if_clause
-        (identifier)
-        (attribute_name)
-        (identifier)))))
+      (identifier)
+      (attribute_name)
+      (identifier))))
 
 ==================
 Basic Start Random
@@ -162,9 +150,8 @@ end_random
 
 (source_file
   (random_block
-    (percent_chance_clause
-      (integer)
-      (identifier))))
+    (integer)
+    (identifier)))
 
 ==========================
 Start Random Multiple Arms
@@ -179,12 +166,10 @@ end_random
 
 (source_file
   (random_block
-    (percent_chance_clause
-      (integer)
-      (identifier))
-    (percent_chance_clause
-      (integer)
-      (identifier))))
+    (integer)
+    (identifier)
+    (integer)
+    (identifier)))
 
 ===========================
 Start Random Inside Section
@@ -201,9 +186,8 @@ end_random
 (source_file
   (section_name)
   (random_block
-    (percent_chance_clause
-      (integer)
-      (identifier))))
+    (integer)
+    (identifier)))
 
 =================================
 Start Random Inside Command Block
@@ -223,10 +207,9 @@ create_land {
   (command_name)
   (block
     (random_block
-      (percent_chance_clause
-        (integer)
-        (attribute_name)
-        (identifier)))))
+      (integer)
+      (attribute_name)
+      (identifier))))
 
 ======================
 If Inside Start Random
@@ -243,12 +226,10 @@ end_random
 
 (source_file
   (random_block
-    (percent_chance_clause
-      (integer)
-      (if_block
-        (if_clause
-          (identifier)
-          (identifier))))))
+    (integer)
+    (if_block
+      (identifier)
+      (identifier))))
 
 ======================
 Start Random Inside If
@@ -264,9 +245,7 @@ endif
 
 (source_file
   (if_block
-    (if_clause
     (identifier)
     (random_block
-      (percent_chance_clause
-        (integer)
-        (identifier))))))
+      (integer)
+      (identifier))))

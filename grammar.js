@@ -197,7 +197,6 @@ export default grammar({
   name: "aoe2_rms",
   externals: ($) => [$.comment, $._error_sentinel],
   extras: ($) => [/\s/, $.comment],
-  word: ($) => $.identifier,
   rules: {
     source_file: ($) => repeat($._token),
 
@@ -230,33 +229,10 @@ export default grammar({
         $.identifier,
       ),
 
-    // The precedence of 1 is required to support highlighting stray
-    // end tokens that are not part of valid blocks.
-    if_block: ($) =>
-      prec(
-        1,
-        seq(
-          $.if_clause,
-          repeat($.elseif_clause),
-          optional($.else_clause),
-          "endif",
-        ),
-      ),
+    if_block: ($) => prec(1, seq("if", repeat($._token), "endif")),
     random_block: ($) =>
-      prec(
-        1,
-        seq("start_random", repeat($.percent_chance_clause), "end_random"),
-      ),
+      prec(1, seq("start_random", repeat($._token), "end_random")),
     block: ($) => prec(1, seq("{", repeat($._token), "}")),
-
-    // prec.right is required so that each clause yields to the next
-    // elseif/else/endif keyword rather than consuming it as a _token.
-    if_clause: ($) => prec.right(1, seq("if", repeat($._token))),
-    elseif_clause: ($) => prec.right(1, seq("elseif", repeat($._token))),
-    else_clause: ($) => prec.right(1, seq("else", repeat($._token))),
-    percent_chance_clause: ($) =>
-      prec.right(1, seq("percent_chance", repeat($._token))),
-
     keyword_control: ($) => choice(...CONTROL_FLOW_KEYWORDS),
     section_name: ($) => choice(...SECTION_NAMES),
     command_name: ($) => choice(...COMMAND_NAMES),

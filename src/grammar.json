@@ -1,7 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "aoe2_rms",
-  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "REPEAT",
@@ -165,27 +164,15 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "if_clause"
+            "type": "STRING",
+            "value": "if"
           },
           {
             "type": "REPEAT",
             "content": {
               "type": "SYMBOL",
-              "name": "elseif_clause"
+              "name": "_token"
             }
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "else_clause"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
           },
           {
             "type": "STRING",
@@ -208,7 +195,7 @@
             "type": "REPEAT",
             "content": {
               "type": "SYMBOL",
-              "name": "percent_chance_clause"
+              "name": "_token"
             }
           },
           {
@@ -238,86 +225,6 @@
           {
             "type": "STRING",
             "value": "}"
-          }
-        ]
-      }
-    },
-    "if_clause": {
-      "type": "PREC_RIGHT",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "if"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
-          }
-        ]
-      }
-    },
-    "elseif_clause": {
-      "type": "PREC_RIGHT",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "elseif"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
-          }
-        ]
-      }
-    },
-    "else_clause": {
-      "type": "PREC_RIGHT",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "else"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
-          }
-        ]
-      }
-    },
-    "percent_chance_clause": {
-      "type": "PREC_RIGHT",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "percent_chance"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
           }
         ]
       }
