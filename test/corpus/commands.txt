@@ -39,7 +39,6 @@ base_terrain GRASS
 
 (source_file
   (section_name)
-  (base_terrain_command)
   (identifier))
 
 =====================
@@ -57,10 +56,11 @@ create_land {
 (source_file
   (section_name)
   (command_name)
-  (attribute_name)
-  (identifier)
-  (attribute_name)
-  (integer))
+  (block
+    (attribute_name)
+    (identifier)
+    (attribute_name)
+    (integer)))
 
 ==========================
 Elevation Generation Block
@@ -78,10 +78,10 @@ create_elevation 7 {
   (section_name)
   (command_name)
   (integer)
-  (base_terrain_attribute)
-  (identifier)
-  (attribute_name)
-  (integer))
+  (block
+    (identifier)
+    (attribute_name)
+    (integer)))
 
 ========================
 Cliff Generation Command
@@ -113,10 +113,10 @@ create_terrain GRASS {
   (section_name)
   (command_name)
   (identifier)
-  (base_terrain_attribute)
-  (identifier)
-  (attribute_name)
-  (integer))
+  (block
+    (identifier)
+    (attribute_name)
+    (integer)))
 
 ===========================
 Connection Generation Block
@@ -132,9 +132,10 @@ create_connect_all_players_land {
 (source_file
   (section_name)
   (command_name)
-  (attribute_name)
-  (identifier)
-  (identifier))
+  (block
+    (attribute_name)
+    (identifier)
+    (identifier)))
 
 ========================
 Objects Generation Block
@@ -152,10 +153,11 @@ create_object GOLD {
   (section_name)
   (command_name)
   (identifier)
-  (attribute_name)
-  (integer)
-  (attribute_name)
-  (integer))
+  (block
+    (attribute_name)
+    (integer)
+    (attribute_name)
+    (integer)))
 
 ===========
 Empty Block
@@ -169,7 +171,8 @@ create_land {
 
 (source_file
   (section_name)
-  (command_name))
+  (command_name)
+  (block))
 
 ============================
 Multiple Commands In Section
@@ -184,9 +187,7 @@ enable_waves 1
 
 (source_file
   (section_name)
-  (base_terrain_command)
   (identifier)
-  (base_layer_command)
   (identifier)
   (command_name)
   (integer))
@@ -205,9 +206,10 @@ create_land {
 (source_file
   (section_name)
   (command_name)
-  (attribute_name)
-  (integer)
-  (integer))
+  (block
+    (attribute_name)
+    (integer)
+    (integer)))
 
 ============================
 Command With Math Expression
@@ -223,10 +225,11 @@ create_land {
 (source_file
   (section_name)
   (command_name)
-  (attribute_name)
-  (integer)
-  (operator)
-  (identifier))
+  (block
+    (attribute_name)
+    (integer)
+    (operator)
+    (identifier)))
 
 =========================
 Empty Block No Whitespace
@@ -239,4 +242,5 @@ create_land {}
 
 (source_file
   (section_name)
-  (command_name))
+  (command_name)
+  (block))

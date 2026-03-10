@@ -5,137 +5,205 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "section_name"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "keyword_control"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "command_name"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "attribute_name"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "base_terrain_command"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "base_terrain_attribute"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "base_layer_command"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "base_layer_attribute"
-          },
-          {
-            "type": "STRING",
-            "value": "#const"
-          },
-          {
-            "type": "STRING",
-            "value": "#define"
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "#include_drs"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "filepath"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "#includeXS"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "filepath"
-              }
-            ]
-          },
-          {
-            "type": "STRING",
-            "value": "{"
-          },
-          {
-            "type": "STRING",
-            "value": "}"
-          },
-          {
-            "type": "STRING",
-            "value": "("
-          },
-          {
-            "type": "STRING",
-            "value": ")"
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "rnd"
-              },
-              {
-                "type": "STRING",
-                "value": "("
-              },
-              {
-                "type": "SYMBOL",
-                "name": "integer"
-              },
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "integer"
-              },
-              {
-                "type": "STRING",
-                "value": ")"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "integer"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "float"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "operator"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "_token"
       }
+    },
+    "_token": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "section_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "random_block"
+        },
+        {
+          "type": "STRING",
+          "value": "elseif"
+        },
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "percent_chance"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "command_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_name"
+        },
+        {
+          "type": "STRING",
+          "value": "#const"
+        },
+        {
+          "type": "STRING",
+          "value": "#define"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "#include_drs"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "filepath"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "#includeXS"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "filepath"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "STRING",
+          "value": "base_terrain"
+        },
+        {
+          "type": "STRING",
+          "value": "base_layer"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "rnd"
+            },
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "integer"
+            },
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "SYMBOL",
+              "name": "integer"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "if_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_token"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "endif"
+        }
+      ]
+    },
+    "random_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "start_random"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_token"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "end_random"
+        }
+      ]
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_token"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
     },
     "keyword_control": {
       "type": "CHOICE",
@@ -819,30 +887,6 @@
   "conflicts": [],
   "precedences": [],
   "externals": [
-    {
-      "type": "STRING",
-      "value": "{"
-    },
-    {
-      "type": "STRING",
-      "value": "}"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "base_terrain_command"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "base_terrain_attribute"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "base_layer_command"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "base_layer_attribute"
-    },
     {
       "type": "SYMBOL",
       "name": "comment"

@@ -5,6 +5,61 @@
     "fields": {}
   },
   {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "random_block",
+          "named": true
+        },
+        {
+          "type": "section_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "command_name",
     "named": true,
     "fields": {}
@@ -29,14 +84,119 @@
     }
   },
   {
-    "type": "keyword_control",
+    "type": "if_block",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "random_block",
+          "named": true
+        },
+        {
+          "type": "section_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "operator",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "random_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "filepath",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "random_block",
+          "named": true
+        },
+        {
+          "type": "section_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "section_name",
@@ -57,19 +217,7 @@
           "named": true
         },
         {
-          "type": "base_layer_attribute",
-          "named": true
-        },
-        {
-          "type": "base_layer_command",
-          "named": true
-        },
-        {
-          "type": "base_terrain_attribute",
-          "named": true
-        },
-        {
-          "type": "base_terrain_command",
+          "type": "block",
           "named": true
         },
         {
@@ -89,15 +237,19 @@
           "named": true
         },
         {
+          "type": "if_block",
+          "named": true
+        },
+        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "keyword_control",
+          "type": "operator",
           "named": true
         },
         {
-          "type": "operator",
+          "type": "random_block",
           "named": true
         },
         {
@@ -259,24 +411,16 @@
     "named": false
   },
   {
-    "type": "base_layer_attribute",
-    "named": true
-  },
-  {
-    "type": "base_layer_command",
-    "named": true
+    "type": "base_layer",
+    "named": false
   },
   {
     "type": "base_size",
     "named": false
   },
   {
-    "type": "base_terrain_attribute",
-    "named": true
-  },
-  {
-    "type": "base_terrain_command",
-    "named": true
+    "type": "base_terrain",
+    "named": false
   },
   {
     "type": "beach_terrain",

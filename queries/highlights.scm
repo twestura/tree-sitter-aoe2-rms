@@ -2,15 +2,23 @@
 
 (comment) @comment
 
-(keyword_control) @keyword.control
+[
+  "if"
+  "elseif"
+  "else"
+  "endif"
+  "start_random"
+  "percent_chance"
+  "end_random"
+] @keyword.control
 (section_name) @tag
 (command_name) @function
 (attribute_name) @property
 
-(base_terrain_command) @function
-(base_terrain_attribute) @property
-(base_layer_command) @function
-(base_layer_attribute) @property
+"base_terrain" @function
+(block "base_terrain" @property)
+"base_layer" @function
+(block "base_layer" @property)
 
 "rnd" @function
 
