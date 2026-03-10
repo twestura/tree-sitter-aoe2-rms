@@ -2,15 +2,7 @@
 
 (comment) @comment
 
-[
-  "if"
-  "elseif"
-  "else"
-  "endif"
-  "start_random"
-  "percent_chance"
-  "end_random"
-] @keyword.control
+(keyword_control) @keyword.control
 (section_name) @tag
 (command_name) @function
 (attribute_name) @property

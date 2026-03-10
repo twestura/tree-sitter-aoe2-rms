@@ -18,31 +18,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "if_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "random_block"
-        },
-        {
-          "type": "STRING",
-          "value": "elseif"
-        },
-        {
-          "type": "STRING",
-          "value": "else"
-        },
-        {
-          "type": "STRING",
-          "value": "endif"
-        },
-        {
-          "type": "STRING",
-          "value": "percent_chance"
-        },
-        {
-          "type": "STRING",
-          "value": "end_random"
+          "name": "keyword_control"
         },
         {
           "type": "SYMBOL",
@@ -156,54 +132,6 @@
           "name": "identifier"
         }
       ]
-    },
-    "if_block": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "if"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "endif"
-          }
-        ]
-      }
-    },
-    "random_block": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "start_random"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_token"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "end_random"
-          }
-        ]
-      }
     },
     "block": {
       "type": "PREC",

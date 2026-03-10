@@ -37,19 +37,15 @@
           "named": true
         },
         {
-          "type": "if_block",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "operator",
+          "type": "keyword_control",
           "named": true
         },
         {
-          "type": "random_block",
+          "type": "operator",
           "named": true
         },
         {
@@ -84,119 +80,14 @@
     }
   },
   {
-    "type": "if_block",
+    "type": "keyword_control",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "attribute_name",
-          "named": true
-        },
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "command_name",
-          "named": true
-        },
-        {
-          "type": "filepath",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "operator",
-          "named": true
-        },
-        {
-          "type": "random_block",
-          "named": true
-        },
-        {
-          "type": "section_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "operator",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "random_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "attribute_name",
-          "named": true
-        },
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "command_name",
-          "named": true
-        },
-        {
-          "type": "filepath",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "operator",
-          "named": true
-        },
-        {
-          "type": "random_block",
-          "named": true
-        },
-        {
-          "type": "section_name",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "section_name",
@@ -237,19 +128,15 @@
           "named": true
         },
         {
-          "type": "if_block",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
         {
-          "type": "operator",
+          "type": "keyword_control",
           "named": true
         },
         {
-          "type": "random_block",
+          "type": "operator",
           "named": true
         },
         {

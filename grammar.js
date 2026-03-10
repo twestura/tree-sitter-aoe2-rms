@@ -7,33 +7,6 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-// The grammar currently always highlights `base_terrain` and `base_layer` as
-// attributes. They are the names of both commands and of attributes and are
-// ambiguous without context.
-
-// Note the grammar is limited in it's current highlighting of comments that
-// it incorrectly treats as comments sequences such as /*text*/ that do not
-// separate the /* and */ sequences by whitespace. And it does not support
-// nested comments.
-//
-// RMS supports nested comments. The comment rule is inspired by the
-// specification of block comments in Rust:
-// https://doc.rust-lang.org/reference/comments.html
-//
-// comment: ($) =>
-//   choice(
-//     seq(
-//       token("/*"),
-//       choice(/[^*]/, "**", $.comment),
-//       repeat(choice($.comment, /[^*]/, /\*[^/]/)),
-//       token("*/"),
-//     ),
-//     "/**/",
-//     "/***/",
-//   ),
-// However, this rule seems not to work in Rust. And it appears that
-// nested comments may require writing a bit of C code to support.
-
 /// The names of RMS keywords for if statements and random blocks.
 const CONTROL_FLOW_KEYWORDS = [
   "if",
@@ -203,13 +176,7 @@ export default grammar({
     _token: ($) =>
       choice(
         $.section_name,
-        $.if_block,
-        $.random_block,
-        "elseif",
-        "else",
-        "endif",
-        "percent_chance",
-        "end_random",
+        $.keyword_control,
         $.command_name,
         $.attribute_name,
         "#const",
@@ -229,9 +196,6 @@ export default grammar({
         $.identifier,
       ),
 
-    if_block: ($) => prec(1, seq("if", repeat($._token), "endif")),
-    random_block: ($) =>
-      prec(1, seq("start_random", repeat($._token), "end_random")),
     block: ($) => prec(1, seq("{", repeat($._token), "}")),
     keyword_control: ($) => choice(...CONTROL_FLOW_KEYWORDS),
     section_name: ($) => choice(...SECTION_NAMES),

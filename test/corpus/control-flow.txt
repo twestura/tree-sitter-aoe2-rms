@@ -11,9 +11,10 @@ endif
 
 (source_file
   (identifier)
-  (if_block
-    (identifier)
-    (identifier)))
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 =======
 If Else
@@ -30,10 +31,12 @@ endif
 
 (source_file
   (identifier)
-  (if_block
-    (identifier)
-    (identifier)
-    (identifier)))
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (keyword_control))
 
 =========
 If Elseif
@@ -50,11 +53,13 @@ endif
 
 (source_file
   (identifier)
-  (if_block
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)))
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 ==============
 If Elseif Else
@@ -73,12 +78,15 @@ endif
 
 (source_file
   (identifier)
-  (if_block
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)))
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (keyword_control))
 
 =========
 Nested If
@@ -93,11 +101,13 @@ endif
 ---
 
 (source_file
-  (if_block
-    (identifier)
-    (if_block
-      (identifier)
-      (identifier))))
+  (keyword_control)
+  (identifier)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (keyword_control))
 
 =================
 If Inside Section
@@ -112,9 +122,10 @@ endif
 
 (source_file
   (section_name)
-  (if_block
-    (identifier)
-    (identifier)))
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control))
 
 =======================
 If Inside Command Block
@@ -133,10 +144,11 @@ create_land {
   (section_name)
   (command_name)
   (block
-    (if_block
-      (identifier)
-      (attribute_name)
-      (identifier))))
+    (keyword_control)
+    (identifier)
+    (attribute_name)
+    (identifier)
+    (keyword_control)))
 
 ==================
 Basic Start Random
@@ -149,9 +161,11 @@ end_random
 ---
 
 (source_file
-  (random_block
-    (integer)
-    (identifier)))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 ==========================
 Start Random Multiple Arms
@@ -165,11 +179,14 @@ end_random
 ---
 
 (source_file
-  (random_block
-    (integer)
-    (identifier)
-    (integer)
-    (identifier)))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 ===========================
 Start Random Inside Section
@@ -185,9 +202,11 @@ end_random
 
 (source_file
   (section_name)
-  (random_block
-    (integer)
-    (identifier)))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control))
 
 =================================
 Start Random Inside Command Block
@@ -206,10 +225,12 @@ create_land {
   (section_name)
   (command_name)
   (block
-    (random_block
-      (integer)
-      (attribute_name)
-      (identifier))))
+    (keyword_control)
+    (keyword_control)
+    (integer)
+    (attribute_name)
+    (identifier)
+    (keyword_control)))
 
 ======================
 If Inside Start Random
@@ -225,11 +246,14 @@ end_random
 ---
 
 (source_file
-  (random_block
-    (integer)
-    (if_block
-      (identifier)
-      (identifier))))
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (keyword_control)
+  (identifier)
+  (identifier)
+  (keyword_control)
+  (keyword_control))
 
 ======================
 Start Random Inside If
@@ -244,8 +268,11 @@ endif
 ---
 
 (source_file
-  (if_block
-    (identifier)
-    (random_block
-      (integer)
-      (identifier))))
+  (keyword_control)
+  (identifier)
+  (keyword_control)
+  (keyword_control)
+  (integer)
+  (identifier)
+  (keyword_control)
+  (keyword_control))
