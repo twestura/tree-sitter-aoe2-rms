@@ -1,0 +1,17 @@
+/*
+ * Multiple opening braces paired with a single closing brace.
+ * Generate this script to see either Archers or Scouts.
+ */
+
+start_random
+  percent_chance 50 #define A
+end_random
+
+<OBJECTS_GENERATION>
+if A
+  create_object ARCHER {
+else
+  create_object SCOUT {
+endif
+  number_of_objects 100
+}

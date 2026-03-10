@@ -1,0 +1,29 @@
+/*
+ * Multiple opening and closing braces mixed together.
+ * Generate this map to see:
+ * - 1 Archer
+ * - 1 Scout
+ * - 100 Archers
+ * - 100 Scouts
+ */
+
+start_random
+  percent_chance 50 #define A
+end_random
+start_random
+  percent_chance 50 #define B
+end_random
+
+<OBJECTS_GENERATION>
+if A
+  create_object ARCHER {
+else
+  create_object SCOUT {
+  endif
+  if B
+    number_of_objects 100
+  }
+  else
+    number_of_objects 1
+  }
+endif

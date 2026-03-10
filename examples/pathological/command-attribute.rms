@@ -1,0 +1,59 @@
+/*
+ * This file shows when a single occurrence of base_terrain is both a command
+ * name and an attribute name. It uses if statements to break up sections and
+ * blocks, so that when variables have different values, the code path that
+ * includes base_terrain may be directly in the <LAND_GENERATION> section or
+ * may be an attribute of a create_terrain command.
+ */
+
+start_random
+  percent_chance 50 #define A
+end_random
+
+<PLAYER_SETUP>
+random_placement
+
+<LAND_GENERATION>
+if A
+  base_terrain GRASS
+  create_player_lands {
+    terrain_type DIRT
+    number_of_tiles 0
+  }
+  <TERRAIN_GENERATION>
+  create_terrain WATER {
+  endif
+    base_terrain GRASS
+  if A
+  else
+    create_player_lands {
+      terrain_type DESERT
+      number_of_tiles 0
+  endif
+}
+
+/*
+A:
+<LAND_GENERATION>
+base_terrain GRASS
+create_player_lands {
+  terrain_type DIRT
+}
+<TERRAIN_GENERATION>
+create_terrain SNOW {
+  base_terrain GRASS /* <-- attribute name */
+}
+
+else:
+<LAND_GENERATION>
+base_terrain GRASS /* <-- command name */
+create_player_lands {
+  terrain_type ROAD
+}
+*/
+
+<OBJECTS_GENERATION>
+create_object TOWN_CENTER {
+  set_place_for_every_player
+  max_distance_to_players 0
+}

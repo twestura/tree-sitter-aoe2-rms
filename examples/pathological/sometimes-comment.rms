@@ -1,0 +1,19 @@
+/*
+ * The end comment sequence is reprsented by the int 70.
+ * By setting a constant to 70, we can use that constant to end a comment.
+ * The spurious end comment sequence afterwards is ignored.
+ *
+ * This technique allows for conditional execution of code, particularly
+ * related to checking the values of variables, beyond what normal RMS
+ * if statements support.
+ *
+ * Generate this script to see either no Archers or 100 Archers.
+ */
+
+start_random
+  percent_chance 50 #const X 0
+  percent_chance 50 #const X 70
+end_random
+
+<OBJECTS_GENERATION>
+/* X create_object ARCHER { number_of_objects 100 } */

@@ -1,0 +1,17 @@
+/*
+ * Multiple closing braces paired with a single opening brace.
+ * Generate this script to see either 1 Archer or 100 Archers.
+ */
+
+start_random
+  percent_chance 50 #define A
+end_random
+
+<OBJECTS_GENERATION>
+create_object ARCHER {
+if A
+  number_of_objects 100
+}
+else
+  number_of_objects 1
+}
