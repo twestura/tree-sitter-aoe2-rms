@@ -1,0 +1,52 @@
+/* Example of a file with my preprocessor macros. */
+
+#const HERDABLE_A SHEEP
+#const STRAGGLER OAKTREE
+
+#MKCONSTS
+
+#const T1 rnd(0,359)
+#const OFFSET rnd(135,225)
+#const T2 (T1 + OFFSET)
+#const R 30
+#FOR($i, 1, 3)
+  #TRIG(T$i)
+  #const X$i (R * COS_T$i + 50)
+  #const Y$i (R * SIN_T$i + 50)
+#END_FOR
+
+<PLAYER_SETUP>
+direct_placement
+
+#SETPHATTR
+
+<LAND_GENERATION>
+base_terrain GRASS
+#FOR($i, 1, 3)
+  create_land {
+    land_position X$i Y$i
+    terrain_type DIRT
+    assign_to AT_TEAM -10 0 0
+    land_id $i
+  }
+#END_FOR
+
+<TERRAIN_GENERATION>
+#REPEAT(8)
+  create_terrain SNOW {
+    base_terrain DIRT
+    land_percent 100
+    number_of_clumps 8192
+    terrain_mask 1
+  }
+#END_REPEAT
+
+<OBJECTS_GENERATION>
+#OBJECTS9VILSZEWALL
+
+create_object SCOUT {
+  #SET_PLACE_FOR_EVERY_PLAYER
+  set_circular_placement
+  min_distance_to_players 7
+  max_distance_to_players 9
+}

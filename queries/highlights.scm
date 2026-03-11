@@ -36,3 +36,4 @@
 (float) @number
 (filepath) @string
 (escape) @string.escape
+(macro) @preproc

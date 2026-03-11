@@ -193,6 +193,7 @@ export default grammar({
         $.integer,
         $.float,
         $.operator,
+        $.macro,
         $.identifier,
       ),
 
@@ -203,6 +204,7 @@ export default grammar({
     attribute_name: ($) => choice(...ATTRIBUTE_NAMES),
     operator: ($) => choice(...OPERATORS),
 
+    macro: ($) => /#[A-Z0-9_]+/,
     integer: ($) => /[+-]?[0-9]+/,
     float: ($) => /[+-]?(inf|[0-9]*\.[0-9]+)/,
     identifier: ($) => /[\p{L}\p{N}_'#$*/\-]+/u,

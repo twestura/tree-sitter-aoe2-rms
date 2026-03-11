@@ -129,6 +129,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "macro"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         }
       ]
@@ -761,6 +765,10 @@
           "value": "%"
         }
       ]
+    },
+    "macro": {
+      "type": "PATTERN",
+      "value": "#[A-Z0-9_]+"
     },
     "integer": {
       "type": "PATTERN",

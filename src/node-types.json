@@ -45,6 +45,10 @@
           "named": true
         },
         {
+          "type": "macro",
+          "named": true
+        },
+        {
           "type": "operator",
           "named": true
         },
@@ -133,6 +137,10 @@
         },
         {
           "type": "keyword_control",
+          "named": true
+        },
+        {
+          "type": "macro",
           "named": true
         },
         {
@@ -545,6 +553,10 @@
   {
     "type": "left_border",
     "named": false
+  },
+  {
+    "type": "macro",
+    "named": true
   },
   {
     "type": "make_indestructible",
