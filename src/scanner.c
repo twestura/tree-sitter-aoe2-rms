@@ -97,12 +97,14 @@ bool handle_block_comment(TSLexer * lexer) {
                 else state = NONWHITESPACE;
                 break;
             case RIGHT_SLASH:
-                // End of comment at depth 0, return without advancing.
-                if (is_whitespace(c) && --depth == 0) {
-                    lexer->result_symbol = COMMENT;
-                    return true;
-                }
-                state = NONWHITESPACE;
+                if (is_whitespace(c)) {
+                    // End of comment at depth 0, return without advancing.
+                    if (--depth == 0) {
+                        lexer->result_symbol = COMMENT;
+                        return true;
+                    }
+                    state = WHITESPACE;
+                } else state = NONWHITESPACE;
                 break;
             default:
                 break;

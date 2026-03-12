@@ -237,3 +237,18 @@ Whitespace Required For Nesting
 (source_file
   (comment)
   (identifier))
+
+===================================
+Nested Comment with Subsequent Code
+===================================
+
+/* #define LABEL /* Description of label. */ */
+#const A 5
+
+
+---
+
+(source_file
+  (comment)
+  (identifier)
+  (integer))
