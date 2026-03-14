@@ -63,3 +63,53 @@ Keyword Is Not Identifier
 ---
 
 (source_file)
+
+======================
+Identifier With Braces
+======================
+
+#define {identifier
+#define identifier{
+#define }identifier
+#define identifier}
+
+---
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
+
+========================
+Identifier With Brackets
+========================
+
+#define [identifier
+#define identifier[
+#define ]identifier
+#define identifier]
+
+---
+
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
+
+==============================
+Identifier With Angle Brackets
+==============================
+
+#define <PLAYERS>
+#define LAND_GENERATION
+#define <ELEVATION_GENERATION
+#define CLIFF_GENERATION>
+
+---
+
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))

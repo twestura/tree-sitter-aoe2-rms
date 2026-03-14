@@ -207,7 +207,7 @@ export default grammar({
     macro: ($) => /#[A-Z0-9_]+/,
     integer: ($) => /[+-]?[0-9]+/,
     float: ($) => /[+-]?(inf|[0-9]*\.[0-9]+)/,
-    identifier: ($) => /[\p{L}\p{N}_'#$*/\-]+/u,
+    identifier: ($) => /[\p{L}\p{N}_'#$*/\-\{\}\[\]<>]+/u,
 
     filepath: ($) => choice($.string, $.filename),
     string: ($) => seq('"', repeat(choice($.escape, /[^"\\]/)), '"'),
