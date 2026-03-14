@@ -49,27 +49,29 @@ enum CommentState {
 /// Returns `false` if the lexer does not start with a comment.
 /// Supports nested comments.
 ///
+/// This function does not set `lexer->result_symbol = COMMENT` on
+/// returning `true`. That must be set by the calling code. Use
+/// `accept_block_comment` instead for a version that sets `result_symbol`
+/// and uses this function internally.
+///
 /// The comment start and end characters must be surrounded by whitespace.
 /// This is not checked for the left of the initial start comment of the lexer,
 /// but is for all subsequent comments.
 ///
 /// Requires that whitespace is advanced past before calling this function.
-bool handle_block_comment(TSLexer * lexer) {
+bool match_block_comment(TSLexer * lexer) {
     if (lexer->lookahead != '/') return false;
     lexer->advance(lexer, false);
     if (lexer->lookahead != '*') return false;
     lexer->advance(lexer, false);
-    if (lexer->eof(lexer)) return true; // Comment reaches eof.
+    if (lexer->eof(lexer)) return true;
     if (!is_whitespace(lexer->lookahead)) return false;
     lexer->advance(lexer, false);
 
     int depth = 1;
     enum CommentState state = WHITESPACE;
     for (;;) {
-        if (lexer->eof(lexer)) {
-            lexer->result_symbol = COMMENT;
-            return true; // Comment reaches eof.
-        }
+        if (lexer->eof(lexer)) return true;
         char c = lexer->lookahead;
         switch (state) {
             case LEFT_SLASH:
@@ -99,10 +101,7 @@ bool handle_block_comment(TSLexer * lexer) {
             case RIGHT_SLASH:
                 if (is_whitespace(c)) {
                     // End of comment at depth 0, return without advancing.
-                    if (--depth == 0) {
-                        lexer->result_symbol = COMMENT;
-                        return true;
-                    }
+                    if (--depth == 0) return true;
                     state = WHITESPACE;
                 } else state = NONWHITESPACE;
                 break;
@@ -114,12 +113,21 @@ bool handle_block_comment(TSLexer * lexer) {
     }
 }
 
+/// Returns `true` if the lexer starts with a comment, and if so advances the
+/// lexer past it. Includes cases for comments that reach the end of the file,
+/// in which case `true` is returned.
+/// Returns `false` if the lexer does not start with a comment.
+/// Sets `lexer->result_symbol` to `COMMENT` if a comment is matched.
+bool accept_block_comment(TSLexer *lexer) {
+    if (!match_block_comment(lexer)) return false;
+    lexer->result_symbol = COMMENT;
+    return true;
+}
+
 bool tree_sitter_aoe2_rms_external_scanner_scan(
     void *scanner, TSLexer *lexer, const bool *valid_symbols
 ) {
     if (valid_symbols[ERROR_SENTINEL]) return false;
     while (is_whitespace(lexer->lookahead)) lexer->advance(lexer, true);
-    return valid_symbols[COMMENT]
-        && lexer->lookahead == '/'
-        && handle_block_comment(lexer);
+    return valid_symbols[COMMENT] && accept_block_comment(lexer);
 }

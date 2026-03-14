@@ -252,3 +252,15 @@ Nested Comment with Subsequent Code
   (comment)
   (identifier)
   (integer))
+
+
+=====================
+Comment Immediate EoF
+=====================
+
+/*
+
+---
+
+(source_file
+  (comment))
