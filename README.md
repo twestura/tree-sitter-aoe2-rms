@@ -140,3 +140,10 @@ Run `tree-sitter generate` to build the parser.
 The `examples` folder contains sample `.rms` files that can be highlighted using `tree-sitter highlight examples/path-to-file.rms`.
 
 The `test/highlight` folder contains test files that can be run using `tree-sitter test`.
+
+## Preprocessor Highlighting
+
+This grammar supports an experimental feature that highlights strings that begin with `#` as preprocessor directives (except for keywords such as `#define`).
+This is not part of the standard RMS syntax, and they really should be highlighted as identifiers.
+
+The preprocessor highlighting is a hack I use for tools that interact with my own map scripts, and I may change it at any time.
