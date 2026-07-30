@@ -1,0 +1,17 @@
+==============================================================
+Syntax-Valid but Engine-Invalid: Missing Required Elevation Section
+==============================================================
+
+<LAND_GENERATION>
+create_land {
+  base_elevation 1
+}
+
+---
+
+(source_file
+  (section_name)
+  (command_name)
+  (block
+    (attribute_name)
+    (integer)))

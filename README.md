@@ -8,6 +8,27 @@ This grammar can be used by any editor with Tree-sitter support, such as Emacs, 
 
 For the Zed extension see [zed-aoe2-rms](https://github.com/twestura/zed-aoe2-rms).
 
+## Validation Scope
+
+A successful parse means the script's syntax was recognized. It does not mean
+the script is safe for the game engine: this grammar does not enforce section
+presence or order, command placement, or other cross-section dependencies.
+
+For example, this is syntactically valid:
+
+```text
+<LAND_GENERATION>
+create_land {
+  base_elevation 1
+}
+```
+
+However, using `base_elevation` requires an `<ELEVATION_GENERATION>` section to
+be present, even if that section is empty. Omitting it has been observed to
+crash Definitive Edition. Semantic validation and in-game testing are therefore
+still required; a Tree-sitter parse without `ERROR` nodes should not be reported
+as proof that an RMS script is engine-valid.
+
 ## Quirks
 
 The RMS syntax has a few weird corner cases that are awkward or ambiguous to highlight.
